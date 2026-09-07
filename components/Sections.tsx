@@ -19,9 +19,9 @@ const Label = ({ children }: { children: React.ReactNode }) => <p className="lab
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  return <header className="header"><a href="#top" className="brand">MOYA <span>Travel</span></a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"].map(x => <a key={x} href={`#${x.toLowerCase()}`} onClick={() => setOpen(false)}>{x}</a>)}</nav></header>;
+  return <header className="header"><a href="#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"].map(x => <a key={x} href={`#${x.toLowerCase()}`} onClick={() => setOpen(false)}>{x}</a>)}</nav></header>;
 }
-export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><p className="hero-place">MOYA TRAVEL<br />MOGAMI, YAMAGATA / JAPAN</p><h1>最上を、旅する。</h1><p className="tagline">Travel slowly.<br /><em>Stay close to the land.</em></p></div></section>; }
+export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami.</p></div></section>; }
 export function Introduction() {
   return <section className="intro wrap" id="about">
     <Label>ABOUT MOYA TRAVEL</Label>
