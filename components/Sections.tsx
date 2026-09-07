@@ -22,7 +22,37 @@ export function Header() {
   return <header className="header"><a href="#top" className="brand">MOYA <span>Travel</span></a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"].map(x => <a key={x} href={`#${x.toLowerCase()}`} onClick={() => setOpen(false)}>{x}</a>)}</nav></header>;
 }
 export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><p className="hero-place">MOYA TRAVEL<br />MOGAMI, YAMAGATA / JAPAN</p><h1>最上を、旅する。</h1><p className="tagline">Travel slowly.<br /><em>Stay close to the land.</em></p></div></section>; }
-export function Introduction() { return <section className="intro wrap" id="about"><Label>ABOUT MOYA TRAVEL</Label><div className="intro-grid"><h2>山間・森との時間に触れる。<br />写真と物語で世界へ届ける。</h2><div><p>山形県最上地域。<br />山、森、雪、杉、集落、そしてそこに暮らす人々。</p><p>MOYA Travelは、この土地に流れる時間や風景を、<br />旅と写真を通じて伝えていきます。</p><p className="english"><em>Journeys shaped by landscape,<br />people and time.</em></p></div></div></section>; }
+export function Introduction() {
+  return <section className="intro wrap" id="about">
+    <Label>ABOUT MOYA TRAVEL</Label>
+    <div className="intro-grid">
+      <div className="intro-lead">
+        <div className="intro-pair">
+          <h2>風景と、人と、時間を旅する。</h2>
+          <p lang="en">Journey through landscapes, people, and time.</p>
+        </div>
+        <div className="intro-pair">
+          <h2>写真と物語で世界へ届ける。</h2>
+          <p lang="en">Sharing them with the world through photography and stories.</p>
+        </div>
+      </div>
+      <div className="intro-body">
+        <div className="intro-pair">
+          <p>山形県最上地域。</p>
+          <p lang="en">Mogami, Yamagata, Japan.</p>
+        </div>
+        <div className="intro-pair">
+          <p>森、雪、水、杉、町並み、そしてそこに暮らす人々。</p>
+          <p lang="en">Forests, snow, water, cedar, townscapes, and the people who call this place home.</p>
+        </div>
+        <div className="intro-pair">
+          <p>MOYA Travelは、この土地に流れる時間や風景を、<br />旅と写真を通じた体験として届けていきます。</p>
+          <p lang="en">MOYA Travel creates experiences that bring you closer to the landscapes<br />and rhythms of this land through travel and photography.</p>
+        </div>
+      </div>
+    </div>
+  </section>;
+}
 export function Journeys() { return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2>旅を、つくる。</h2><div className="journey-list">{journeys.map((item, i) => <article className="journey" key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section>; }
 export function Places() { return <section className="section places-bg" id="places"><div className="wrap"><Label>PLACES / STORIES / PHOTOGRAPHS</Label><h2>土地の記憶。</h2><div className="places-grid">{places.map(item => <article className={`place ${item.className}`} key={item.title}><div className="place-image"><Image src={item.image} alt={`${item.title}をイメージした風景`} fill sizes="(max-width: 700px) 100vw, 40vw" /></div><Label>{item.category}</Label><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>; }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><h2>土地を見る、新しい視点。</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA</h3><p>写真を通じて地域を記録し、<br />土地の魅力を新しい視点で伝える共同プロジェクト。</p><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
