@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const journeys = [
   {
@@ -29,12 +29,25 @@ const journeys = [
     image: "/images/journey-field.svg"
   }
 ];
-const places = [
-  { category: "KANEYAMA", title: "金山の町並み", text: "杉と白壁がつくる、山間の町の輪郭。", image: "/images/kaneyama.svg", className: "place-wide" },
-  { category: "FOREST", title: "杉の森", text: "手入れされた森に差す、静かな光。", image: "/images/forest.svg", className: "place-tall" },
-  { category: "SNOW", title: "雪の季節", text: "音を包み、暮らしを変える冬。", image: "/images/snow.svg", className: "" },
-  { category: "ARCHITECTURE", title: "土地の建築", text: "風土から生まれ、受け継がれる形。", image: "/images/architecture.svg", className: "" }
-];
+type PhotoTrunk = {
+  no: string;
+  nameJa: string;
+  nameEn: string;
+  descriptionJa?: string | null;
+  descriptionEn?: string | null;
+  featuredImage: string;
+  galleryImages: string[];
+};
+
+// Add a trunk here after placing its trunkNN01–07.jpg files in public/images/places/.
+// 01 is the featured image; the gallery accepts any one to six images from 02–07.
+const photoTrunks: PhotoTrunk[] = [{
+  no: "01",
+  nameJa: "金山の街並み",
+  nameEn: "KANEYAMA TOWNSCAPE",
+  featuredImage: "/images/places/trunk0101.jpg",
+  galleryImages: Array.from({ length: 6 }, (_, index) => `/images/places/trunk01${String(index + 2).padStart(2, "0")}.jpg`)
+}];
 
 const Label = ({ children }: { children: React.ReactNode }) => <p className="label">{children}</p>;
 
@@ -71,7 +84,35 @@ export function Introduction() {
   </section>;
 }
 export function Journeys() { return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p></div></article>)}</div></section>; }
-export function Places() { return <section className="section places-bg" id="places"><div className="wrap"><Label>PLACES / STORIES / PHOTOGRAPHS</Label><h2>土地の記憶。</h2><div className="places-grid">{places.map(item => <article className={`place ${item.className}`} key={item.title}><div className="place-image"><Image src={item.image} alt={`${item.title}をイメージした風景`} fill sizes="(max-width: 700px) 100vw, 40vw" /></div><Label>{item.category}</Label><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>; }
+function TrunkPhoto({ src, alt, featured = false, onOpen }: { src: string; alt: string; featured?: boolean; onOpen?: () => void }) {
+  const [missing, setMissing] = useState(false);
+  if (missing) return null;
+  const image = <img src={src} alt={alt} onError={() => setMissing(true)} />;
+  return featured ? <figure className="trunk-featured">{image}</figure> : <button className="trunk-photo" type="button" onClick={onOpen} aria-label={`${alt}を拡大表示`}>{image}</button>;
+}
+
+export function Places() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  useEffect(() => {
+    if (!lightbox) return;
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setLightbox(null);
+    document.body.classList.add("lightbox-open");
+    window.addEventListener("keydown", close);
+    return () => { document.body.classList.remove("lightbox-open"); window.removeEventListener("keydown", close); };
+  }, [lightbox]);
+
+  return <section className="section places-bg" id="places"><div className="wrap places-wrap">
+    <Label>PLACES / PHOTOGRAPHS</Label>
+    <div className="places-heading"><h2>最上の風景。</h2><p lang="en">Landscapes of Mogami.</p></div>
+    <div className="trunk-list">{photoTrunks.map(trunk => <article className="photo-trunk" key={trunk.no}>
+      <header className="trunk-header"><p className="trunk-number">{trunk.no}</p><div className="trunk-title"><h3>{trunk.nameJa}</h3><p lang="en">{trunk.nameEn}</p></div>
+        {(trunk.descriptionJa || trunk.descriptionEn) && <div className="trunk-description">{trunk.descriptionJa && <p>{trunk.descriptionJa}</p>}{trunk.descriptionEn && <p lang="en">{trunk.descriptionEn}</p>}</div>}
+      </header>
+      <TrunkPhoto src={trunk.featuredImage} alt={`${trunk.nameJa}の代表写真`} featured />
+      <div className="trunk-gallery">{trunk.galleryImages.slice(0, 6).map((src, index) => { const alt = `${trunk.nameJa}の写真 ${index + 1}`; return <TrunkPhoto key={src} src={src} alt={alt} onOpen={() => setLightbox({ src, alt })} />; })}</div>
+    </article>)}</div>
+  </div>{lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label="写真の拡大表示" onClick={() => setLightbox(null)}><button type="button" className="lightbox-close" onClick={() => setLightbox(null)} aria-label="閉じる">CLOSE <span aria-hidden="true">×</span></button><img src={lightbox.src} alt={lightbox.alt} onClick={event => event.stopPropagation()} /></div>}</section>;
+}
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><h2>土地を見る、新しい視点。</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA</h3><p>写真を通じて地域を記録し、<br />土地の魅力を新しい視点で伝える共同プロジェクト。</p><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
 export function Social() { return <section className="section wrap"><Label>FOLLOW THE JOURNEY</Label><h2>最上の日常を。</h2><div className="social-grid">{["social-mountain.svg", "social-house.svg", "social-sugi.svg"].map((image, i) => <a href="#contact" aria-label={`最上の日常 写真 ${i + 1}`} key={image}><Image src={`/images/${image}`} alt="最上の日常の記録" fill sizes="(max-width: 700px) 100vw, 33vw" /></a>)}</div></section>; }
 export function Professionals() { return <section className="professionals"><div className="wrap pro-grid"><div><Label>FOR TRAVEL PROFESSIONALS</Label><h2>旅行業者・事業者の皆さまへ</h2></div><div><p>MOYA Travelでは、最上地域を中心とした旅行コンテンツの企画、地域事業者との調整、旅行サービスの手配を行っています。</p><p>地域を訪れるツアーや撮影、交流企画、滞在プログラム等についてご相談ください。</p><a className="outline" href="#contact">CONTACT US</a></div></div></section>; }
