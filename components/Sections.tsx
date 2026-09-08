@@ -149,8 +149,8 @@ export function Contact() {
       </div>
       <div className="travelers-content">
         <div className="travelers-intro">
-          <p>旅行者様からのお問い合わせ・旅行のご相談は、<br />提携する旅行業者にて承ります。</p>
-          <p lang="en">For travel inquiries and consultations, please contact our partner travel agency,<br />Trans Ocean Tourist Co., Ltd.</p>
+          <p>旅行者様からのお問い合わせ・旅行のご相談を承ります。<br />弊社が提携する旅行業者をご紹介いたします。</p>
+          <p lang="en">We welcome inquiries and travel consultations from travelers.<br />We can introduce you to one of our partner travel agencies.</p>
         </div>
         <address className="travel-agency">
           <div>
