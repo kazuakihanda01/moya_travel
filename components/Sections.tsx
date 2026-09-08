@@ -8,8 +8,9 @@ const travelInquiryUrl = process.env.NEXT_PUBLIC_TRAVEL_INQUIRY_URL;
 const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "#about" },
   { label: "JOURNEYS & LOCAL EXPERIENCES", href: "#journeys" },
-  { label: "PLACES / PHOTOGRAPHS", href: "#places" },
   { label: "COLLABORATIVE PROJECTS", href: "#projects" },
+  // Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready.
+  // { label: "PLACES / PHOTOGRAPHS", href: "#places" },
   { label: "LAND OPERATOR", href: "#land-operator" },
   { label: "FOR TRAVELERS", href: "#for-travelers" }
 ];
