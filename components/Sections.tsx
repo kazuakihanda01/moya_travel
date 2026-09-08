@@ -10,7 +10,7 @@ const journeys = [
     titleEn: "A journey through beautiful townscapes.",
     text: <>最上・金山の、蔵屋敷や大堰、伝統的な金山住宅。<br />暮らしとともに受け継がれてきた美しい風景を歩く。</>,
     textEn: <>Traditional Kaneyama houses, historic storehouses, and the Ōzeki waterway<br />in Mogami, Kaneyama.<br />Walk through beautiful landscapes shaped and preserved by generations of local life.</>,
-    image: "/images/journey-walk.svg"
+    image: "/images/journey-walk.svg.jpg"
   },
   {
     no: "02",
