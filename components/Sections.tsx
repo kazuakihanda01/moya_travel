@@ -88,30 +88,36 @@ function TrunkPhoto({ src, alt, featured = false, onOpen }: { src: string; alt: 
   const [missing, setMissing] = useState(false);
   if (missing) return null;
   const image = <img src={src} alt={alt} onError={() => setMissing(true)} />;
-  return featured ? <figure className="trunk-featured">{image}</figure> : <button className="trunk-photo" type="button" onClick={onOpen} aria-label={`${alt}を拡大表示`}>{image}</button>;
+  return featured ? <button className="trunk-featured" type="button" onClick={onOpen} aria-label={`${alt}からフォトトランクを開く`}>{image}<span>VIEW PHOTO TRUNK →</span></button> : <figure className="trunk-photo">{image}</figure>;
 }
 
 export function Places() {
-  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [openTrunk, setOpenTrunk] = useState<PhotoTrunk | null>(null);
   useEffect(() => {
-    if (!lightbox) return;
-    const close = (event: KeyboardEvent) => event.key === "Escape" && setLightbox(null);
-    document.body.classList.add("lightbox-open");
+    if (!openTrunk) return;
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setOpenTrunk(null);
+    document.body.classList.add("trunk-view-open");
     window.addEventListener("keydown", close);
-    return () => { document.body.classList.remove("lightbox-open"); window.removeEventListener("keydown", close); };
-  }, [lightbox]);
+    return () => { document.body.classList.remove("trunk-view-open"); window.removeEventListener("keydown", close); };
+  }, [openTrunk]);
 
   return <section className="section places-bg" id="places"><div className="wrap places-wrap">
     <Label>PLACES / PHOTOGRAPHS</Label>
     <div className="places-heading"><h2>最上の風景。</h2><p lang="en">Landscapes of Mogami.</p></div>
     <div className="trunk-list">{photoTrunks.map(trunk => <article className="photo-trunk" key={trunk.no}>
-      <header className="trunk-header"><p className="trunk-number">{trunk.no}</p><div className="trunk-title"><h3>{trunk.nameJa}</h3><p lang="en">{trunk.nameEn}</p></div>
-        {(trunk.descriptionJa || trunk.descriptionEn) && <div className="trunk-description">{trunk.descriptionJa && <p>{trunk.descriptionJa}</p>}{trunk.descriptionEn && <p lang="en">{trunk.descriptionEn}</p>}</div>}
-      </header>
-      <TrunkPhoto src={trunk.featuredImage} alt={`${trunk.nameJa}の代表写真`} featured />
-      <div className="trunk-gallery">{trunk.galleryImages.slice(0, 6).map((src, index) => { const alt = `${trunk.nameJa}の写真 ${index + 1}`; return <TrunkPhoto key={src} src={src} alt={alt} onOpen={() => setLightbox({ src, alt })} />; })}</div>
+      <header className="trunk-header"><p className="trunk-number">{trunk.no}</p><div className="trunk-title"><h3>{trunk.nameJa}</h3><p lang="en">{trunk.nameEn}</p></div></header>
+      <TrunkPhoto src={trunk.featuredImage} alt={`${trunk.nameJa}の代表写真`} featured onOpen={() => setOpenTrunk(trunk)} />
     </article>)}</div>
-  </div>{lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label="写真の拡大表示" onClick={() => setLightbox(null)}><button type="button" className="lightbox-close" onClick={() => setLightbox(null)} aria-label="閉じる">CLOSE <span aria-hidden="true">×</span></button><img src={lightbox.src} alt={lightbox.alt} onClick={event => event.stopPropagation()} /></div>}</section>;
+  </div>{openTrunk && <div className="trunk-view" role="dialog" aria-modal="true" aria-labelledby={`trunk-view-title-${openTrunk.no}`}>
+    <button type="button" className="trunk-back" onClick={() => setOpenTrunk(null)} aria-label="フォトトランク一覧へ戻る"><span aria-hidden="true">←</span> BACK</button>
+    <div className="trunk-view-inner">
+      <header className="trunk-view-header"><p className="trunk-number">{openTrunk.no}</p><div className="trunk-title"><h3 id={`trunk-view-title-${openTrunk.no}`}>{openTrunk.nameJa}</h3><p lang="en">{openTrunk.nameEn}</p></div>
+        {(openTrunk.descriptionJa || openTrunk.descriptionEn) && <div className="trunk-description">{openTrunk.descriptionJa && <p>{openTrunk.descriptionJa}</p>}{openTrunk.descriptionEn && <p lang="en">{openTrunk.descriptionEn}</p>}</div>}
+      </header>
+      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.slice(0, 6).map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
+      <button type="button" className="trunk-return" onClick={() => setOpenTrunk(null)}><span aria-hidden="true">←</span> PHOTO TRUNKSへ戻る</button>
+    </div>
+  </div>}</section>;
 }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><h2>土地を見る、新しい視点。</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA</h3><p>写真を通じて地域を記録し、<br />土地の魅力を新しい視点で伝える共同プロジェクト。</p><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
 export function Social() { return <section className="section wrap"><Label>FOLLOW THE JOURNEY</Label><h2>最上の日常を。</h2><div className="social-grid">{["social-mountain.svg", "social-house.svg", "social-sugi.svg"].map((image, i) => <a href="#contact" aria-label={`最上の日常 写真 ${i + 1}`} key={image}><Image src={`/images/${image}`} alt="最上の日常の記録" fill sizes="(max-width: 700px) 100vw, 33vw" /></a>)}</div></section>; }
