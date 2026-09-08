@@ -4,9 +4,30 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 const journeys = [
-  { no: "01", title: "金山の風景を歩く", text: "町並み、杉、山間の暮らしを巡る小さな旅。", image: "/images/journey-walk.svg" },
-  { no: "02", title: "地域を知るための滞在", text: "宿泊、地域文化、食、自然を組み合わせた滞在型プログラム。", image: "/images/journey-stay.svg" },
-  { no: "03", title: "地域を考える旅", text: "シンポジウム、フィールドワーク、交流企画など。", image: "/images/journey-field.svg" }
+  {
+    no: "01",
+    title: "美しい町並みを歩く旅",
+    titleEn: "A journey through beautiful townscapes.",
+    text: <>最上・金山の、蔵屋敷や大堰、伝統的な金山住宅。<br />暮らしとともに受け継がれてきた美しい風景を歩く。</>,
+    textEn: <>Traditional Kaneyama houses, historic storehouses, and the Ōzeki waterway<br />in Mogami, Kaneyama.<br />Walk through beautiful landscapes shaped and preserved by generations of local life.</>,
+    image: "/images/journey-walk.svg"
+  },
+  {
+    no: "02",
+    title: "最上を知る旅",
+    titleEn: "Discover Mogami.",
+    text: <>自然、温泉、食、地域文化。<br />最上を彩る8つの地域、それぞれのカラーに触れながら、<br />この土地を深く知る旅。</>,
+    textEn: <>Nature, hot springs, food, and local culture.<br />A journey through the eight distinct communities that give Mogami its color,<br />offering a deeper experience of the region.</>,
+    image: "/images/journey-stay.svg"
+  },
+  {
+    no: "03",
+    title: "最上で集い、語らう旅",
+    titleEn: "Gather, Create and Connect in Mogami.",
+    text: <>社員旅行や仲間とのセッション、ワークショップ、シンポジウム。<br />自然豊かな最上に集い、都会を離れて語り合う。<br />新しい発想やつながりが生まれる、クリエイティブな時間を旅にする。</>,
+    textEn: <>Company retreats, group sessions, workshops, and symposiums.<br />Step away from the city and gather in the nature of Mogami—<br />a journey for conversation, creativity, and new connections.</>,
+    image: "/images/journey-field.svg"
+  }
 ];
 const places = [
   { category: "KANEYAMA", title: "金山の町並み", text: "杉と白壁がつくる、山間の町の輪郭。", image: "/images/kaneyama.svg", className: "place-wide" },
@@ -28,22 +49,18 @@ export function Introduction() {
     <div className="intro-grid">
       <div className="intro-lead">
         <div className="intro-pair">
-          <h2>風景と、人と、時間を旅する。</h2>
-          <p lang="en">Journey through landscapes, people, and time.</p>
+          <h2>風景と時間を旅する。</h2>
+          <p lang="en">Journey through landscapes and time.</p>
         </div>
         <div className="intro-pair">
-          <h2>写真と物語で世界へ届ける。</h2>
-          <p lang="en">Sharing them with the world through photography and stories.</p>
+          <h2>出会えた物語を写真にする。</h2>
+          <p lang="en">Turning the stories we encounter into photographs.</p>
         </div>
       </div>
       <div className="intro-body">
         <div className="intro-pair">
           <p>山形県最上地域。</p>
           <p lang="en">Mogami, Yamagata, Japan.</p>
-        </div>
-        <div className="intro-pair">
-          <p>森、雪、水、杉、町並み、そしてそこに暮らす人々。</p>
-          <p lang="en">Forests, snow, water, cedar, townscapes, and the people who call this place home.</p>
         </div>
         <div className="intro-pair">
           <p>MOYA Travelは、この土地に流れる時間や風景を、<br />旅と写真を通じた体験として届けていきます。</p>
@@ -53,7 +70,7 @@ export function Introduction() {
     </div>
   </section>;
 }
-export function Journeys() { return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2>旅を、つくる。</h2><div className="journey-list">{journeys.map((item, i) => <article className="journey" key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p>{item.text}</p></div></article>)}</div></section>; }
+export function Journeys() { return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p></div></article>)}</div></section>; }
 export function Places() { return <section className="section places-bg" id="places"><div className="wrap"><Label>PLACES / STORIES / PHOTOGRAPHS</Label><h2>土地の記憶。</h2><div className="places-grid">{places.map(item => <article className={`place ${item.className}`} key={item.title}><div className="place-image"><Image src={item.image} alt={`${item.title}をイメージした風景`} fill sizes="(max-width: 700px) 100vw, 40vw" /></div><Label>{item.category}</Label><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>; }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><h2>土地を見る、新しい視点。</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA</h3><p>写真を通じて地域を記録し、<br />土地の魅力を新しい視点で伝える共同プロジェクト。</p><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
 export function Social() { return <section className="section wrap"><Label>FOLLOW THE JOURNEY</Label><h2>最上の日常を。</h2><div className="social-grid">{["social-mountain.svg", "social-house.svg", "social-sugi.svg"].map((image, i) => <a href="#contact" aria-label={`最上の日常 写真 ${i + 1}`} key={image}><Image src={`/images/${image}`} alt="最上の日常の記録" fill sizes="(max-width: 700px) 100vw, 33vw" /></a>)}</div></section>; }
