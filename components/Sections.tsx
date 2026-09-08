@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+const travelInquiryUrl = process.env.NEXT_PUBLIC_TRAVEL_INQUIRY_URL;
 
 const journeys = [
   {
@@ -129,5 +131,5 @@ export function Professionals() { return <section className="professionals"><div
     <p className="business-inquiry">BUSINESS INQUIRY →</p>
   </div>
 </div></section>; }
-export function Contact() { const [sent, setSent] = useState(false); const submit = (e: FormEvent) => { e.preventDefault(); setSent(true); }; return <section className="section wrap contact" id="contact"><Label>CONTACT</Label><div className="contact-grid"><div><h2>お問い合わせ</h2><p>旅行コンテンツや地域での企画について、<br />こちらからお問い合わせください。</p></div><form onSubmit={submit}>{[["name", "お名前", "text"], ["company", "会社名 / 団体名", "text"], ["email", "メールアドレス", "email"], ["tel", "電話番号", "tel"]].map(([id,label,type]) => <label key={id}>{label}<input id={id} name={id} type={type} required={id === "name" || id === "email"} /></label>)}<label>お問い合わせ種別<select name="type" defaultValue=""><option value="" disabled>選択してください</option>{["旅行コンテンツについて", "地域での撮影・企画について", "旅行サービス手配について", "共同企画について", "その他"].map(x => <option key={x}>{x}</option>)}</select></label><label>お問い合わせ内容<textarea name="message" rows={5} required /></label><button className="outline" type="submit">SEND MESSAGE</button>{sent && <p className="form-note" role="status">現在はプレビュー版です。送信機能は公開時に接続されます。</p>}</form></div></section>; }
+export function Contact() { return <section className="section wrap travelers" id="contact"><Label>FOR TRAVELERS</Label><div className="travelers-grid"><div className="travelers-heading"><h2>最上への旅に興味のある方へ。</h2><p lang="en">Planning a journey to Mogami?</p></div><div className="travelers-content"><p>最上・金山への旅行についてのお問い合わせは、<br />連携する旅行業者「トランスオーシャンツーリスト様」の<br />問い合わせフォームから承ります。</p>{travelInquiryUrl ? <a className="text-link" href={travelInquiryUrl} target="_blank" rel="noopener noreferrer">TRAVEL INQUIRY →</a> : <span className="text-link travel-inquiry-pending">TRAVEL INQUIRY →</span>}</div></div></section>; }
 export function Footer() { return <footer><div><a className="footer-brand" href="#top">MOYA <span>Travel</span></a><p>MOGAMI, YAMAGATA / JAPAN</p></div><nav aria-label="フッターナビゲーション"><a href="#about">ABOUT</a><a href="#journeys">JOURNEYS</a><a href="#places">PLACES</a><a href="#contact">CONTACT</a></nav><small>© MOYA TRAVEL</small></footer>; }
