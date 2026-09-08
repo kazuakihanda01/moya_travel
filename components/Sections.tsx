@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const travelInquiryUrl = process.env.NEXT_PUBLIC_TRAVEL_INQUIRY_URL;
-
 const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "#about" },
   { label: "JOURNEYS & LOCAL EXPERIENCES", href: "#journeys" },
@@ -166,7 +164,7 @@ export function Contact() {
             <p lang="en">1-30 Tokiha-machi, Shinjo, Yamagata 996-0021, Japan</p>
           </div>
         </address>
-        {travelInquiryUrl ? <a className="text-link" href={travelInquiryUrl} target="_blank" rel="noopener noreferrer">INQUIRY FORM →</a> : <span className="text-link travel-inquiry-pending">INQUIRY FORM →</span>}
+        <a className="text-link" href="https://business.form-mailer.jp/lp/a90ed0eb367559" target="_blank" rel="noopener noreferrer">INQUIRY FORM →</a>
       </div>
     </div>
   </section>;
