@@ -5,6 +5,15 @@ import { useEffect, useState } from "react";
 
 const travelInquiryUrl = process.env.NEXT_PUBLIC_TRAVEL_INQUIRY_URL;
 
+const navigationLinks = [
+  { label: "ABOUT MOYA TRAVEL", href: "#about" },
+  { label: "JOURNEYS & LOCAL EXPERIENCES", href: "#journeys" },
+  { label: "PLACES / PHOTOGRAPHS", href: "#places" },
+  { label: "COLLABORATIVE PROJECTS", href: "#projects" },
+  { label: "LAND OPERATOR", href: "#land-operator" },
+  { label: "FOR TRAVELERS", href: "#for-travelers" }
+];
+
 const journeys = [
   {
     no: "01",
@@ -55,7 +64,7 @@ const Label = ({ children }: { children: React.ReactNode }) => <p className="lab
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  return <header className="header"><a href="#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"].map(x => <a key={x} href={`#${x.toLowerCase()}`} onClick={() => setOpen(false)}>{x}</a>)}</nav></header>;
+  return <header className="header"><a href="#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{navigationLinks.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}</nav></header>;
 }
 export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami/Yamagata.</p></div></section>; }
 export function Introduction() {
@@ -122,7 +131,7 @@ export function Places() {
   </div>}</section>;
 }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
-export function Professionals() { return <section className="professionals"><div className="wrap land-operator">
+export function Professionals() { return <section className="professionals" id="land-operator"><div className="wrap land-operator">
   <div className="land-operator-heading"><Label>LAND OPERATOR</Label><h2>最上だから、つくれる旅がある。</h2><p lang="en">Journeys that can only be created in Mogami.</p></div>
   <div className="land-operator-content">
     <div className="land-operator-intro"><p>MOYA Travelでは、最上・金山を知るランドオペレーターとして、</p><ol>{journeys.map(item => <li key={item.no}><span>{item.no}</span>「{item.title}」</li>)}</ol><p>をベースに、ご要望に合わせた旅をアレンジします。</p></div>
@@ -132,7 +141,7 @@ export function Professionals() { return <section className="professionals"><div
   </div>
 </div></section>; }
 export function Contact() {
-  return <section className="section wrap travelers" id="contact">
+  return <section className="section wrap travelers" id="for-travelers">
     <Label>FOR TRAVELERS</Label>
     <div className="travelers-grid">
       <div className="travelers-heading">
@@ -155,7 +164,6 @@ export function Contact() {
   </section>;
 }
 export function Footer() {
-  const footerLinks = ["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"];
   return <footer>
     <div className="footer-identity">
       <a className="footer-brand" href="#top">MOYA Travel</a>
@@ -164,7 +172,7 @@ export function Footer() {
         <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />（営業拠点：山形県新庄市沖ノ町5-1）</p>
       </address>
     </div>
-    <nav aria-label="フッターナビゲーション">{footerLinks.map(link => <a key={link} href={`#${link.toLowerCase()}`}>{link}</a>)}</nav>
+    <nav aria-label="フッターナビゲーション">{navigationLinks.map(link => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>
     <small>© MOYA TRAVEL</small>
   </footer>;
 }
