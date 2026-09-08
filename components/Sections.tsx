@@ -131,5 +131,40 @@ export function Professionals() { return <section className="professionals"><div
     <p className="business-inquiry">BUSINESS INQUIRY →</p>
   </div>
 </div></section>; }
-export function Contact() { return <section className="section wrap travelers" id="contact"><Label>FOR TRAVELERS</Label><div className="travelers-grid"><div className="travelers-heading"><h2>最上への旅に興味のある方へ。</h2><p lang="en">Planning a journey to Mogami?</p></div><div className="travelers-content"><p>最上・金山への旅行についてのお問い合わせは、<br />連携する旅行業者「トランスオーシャンツーリスト様」の<br />問い合わせフォームから承ります。</p>{travelInquiryUrl ? <a className="text-link" href={travelInquiryUrl} target="_blank" rel="noopener noreferrer">TRAVEL INQUIRY →</a> : <span className="text-link travel-inquiry-pending">TRAVEL INQUIRY →</span>}</div></div></section>; }
-export function Footer() { return <footer><div><a className="footer-brand" href="#top">MOYA <span>Travel</span></a><p>MOGAMI, YAMAGATA / JAPAN</p></div><nav aria-label="フッターナビゲーション"><a href="#about">ABOUT</a><a href="#journeys">JOURNEYS</a><a href="#places">PLACES</a><a href="#contact">CONTACT</a></nav><small>© MOYA TRAVEL</small></footer>; }
+export function Contact() {
+  return <section className="section wrap travelers" id="contact">
+    <Label>FOR TRAVELERS</Label>
+    <div className="travelers-grid">
+      <div className="travelers-heading">
+        <h2>最上を、旅したい人へ。</h2>
+        <p lang="en">For those who wish to journey through Mogami.</p>
+      </div>
+      <div className="travelers-content">
+        <div className="travelers-intro">
+          <p>旅行者様からのお問い合わせ・旅行のご相談は、<br />提携する旅行業者「有限会社トランスオーシャンツーリスト」にて承ります。</p>
+          <p lang="en">For travel inquiries and consultations, please contact our partner travel agency,<br />Trans Ocean Tourist Co., Ltd.</p>
+        </div>
+        <address className="travel-agency">
+          <div><p>有限会社トランスオーシャンツーリスト</p><p lang="en">Trans Ocean Tourist Co., Ltd.</p></div>
+          <div><p>山形県知事登録旅行業 第2-200号</p><p lang="en">Registered Travel Agency, Yamagata Prefecture No. 2-200</p></div>
+          <div><p>〒996-0021 山形県新庄市常葉町1-30</p><p lang="en">1-30 Tokiha-machi, Shinjo, Yamagata 996-0021, Japan</p></div>
+        </address>
+        {travelInquiryUrl ? <a className="text-link" href={travelInquiryUrl} target="_blank" rel="noopener noreferrer">INQUIRY FORM →</a> : <span className="text-link travel-inquiry-pending">INQUIRY FORM →</span>}
+      </div>
+    </div>
+  </section>;
+}
+export function Footer() {
+  const footerLinks = ["ABOUT", "JOURNEYS", "PLACES", "PROJECTS", "CONTACT"];
+  return <footer>
+    <div className="footer-identity">
+      <a className="footer-brand" href="#top">MOYA Travel</a>
+      <address>
+        <p>NPO法人MOYA<br />山形県最上郡金山町大字金山325</p>
+        <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />（営業拠点：山形県新庄市沖ノ町5-1）</p>
+      </address>
+    </div>
+    <nav aria-label="フッターナビゲーション">{footerLinks.map(link => <a key={link} href={`#${link.toLowerCase()}`}>{link}</a>)}</nav>
+    <small>© MOYA TRAVEL</small>
+  </footer>;
+}
