@@ -150,13 +150,20 @@ export function Contact() {
       </div>
       <div className="travelers-content">
         <div className="travelers-intro">
-          <p>旅行者様からのお問い合わせ・旅行のご相談は、<br />提携する旅行業者「有限会社トランスオーシャンツーリスト」にて承ります。</p>
+          <p>旅行者様からのお問い合わせ・旅行のご相談は、<br />提携する旅行業者にて承ります。</p>
           <p lang="en">For travel inquiries and consultations, please contact our partner travel agency,<br />Trans Ocean Tourist Co., Ltd.</p>
         </div>
         <address className="travel-agency">
-          <div><p>有限会社トランスオーシャンツーリスト</p><p lang="en">Trans Ocean Tourist Co., Ltd.</p></div>
-          <div><p>山形県知事登録旅行業 第2-200号</p><p lang="en">Registered Travel Agency, Yamagata Prefecture No. 2-200</p></div>
-          <div><p>〒996-0021 山形県新庄市常葉町1-30</p><p lang="en">1-30 Tokiha-machi, Shinjo, Yamagata 996-0021, Japan</p></div>
+          <div>
+            <p>有限会社トランスオーシャンツーリスト</p>
+            <p>山形県知事登録旅行業 第2-200号</p>
+            <p>〒996-0021 山形県新庄市常葉町1-30</p>
+          </div>
+          <div>
+            <p lang="en">Trans Ocean Tourist Co., Ltd.</p>
+            <p lang="en">Registered Travel Agency, Yamagata Prefecture No. 2-200</p>
+            <p lang="en">1-30 Tokiha-machi, Shinjo, Yamagata 996-0021, Japan</p>
+          </div>
         </address>
         {travelInquiryUrl ? <a className="text-link" href={travelInquiryUrl} target="_blank" rel="noopener noreferrer">INQUIRY FORM →</a> : <span className="text-link travel-inquiry-pending">INQUIRY FORM →</span>}
       </div>
