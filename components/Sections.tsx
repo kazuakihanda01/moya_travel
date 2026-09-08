@@ -29,7 +29,7 @@ const journeys = [
     titleEn: "Discover Mogami.",
     text: <>自然、温泉、食、地域文化。<br />最上を彩る8つの地域、それぞれのカラーに触れながら、<br />この土地を深く知る旅。</>,
     textEn: <>Nature, hot springs, food, and local culture.<br />A journey through the eight distinct communities that give Mogami its color,<br />offering a deeper experience of the region.</>,
-    image: "/images/journey-stay.svg"
+    image: "/images/journey-stay.jpg"
   },
   {
     no: "03",
