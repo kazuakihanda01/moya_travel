@@ -37,7 +37,7 @@ const journeys = [
     titleEn: "Gather, Create and Connect in Mogami.",
     text: <>社員旅行や仲間とのセッション、ワークショップ、シンポジウム。<br />自然豊かな最上に集い、都会を離れて語り合う。<br />新しい発想やつながりが生まれる、クリエイティブな時間を旅にする。</>,
     textEn: <>Company retreats, group sessions, workshops, and symposiums.<br />Step away from the city and gather in the nature of Mogami—<br />a journey for conversation, creativity, and new connections.</>,
-    image: "/images/journey-field.svg"
+    image: "/images/journey-field.jpg"
   }
 ];
 type PhotoTrunk = {
