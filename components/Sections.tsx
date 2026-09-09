@@ -173,8 +173,17 @@ export function Professionals() { return <section className="professionals" id="
   <div className="land-operator-content">
     <div className="land-operator-intro"><p>MOYA Travelでは、最上・金山を知るランドオペレーターとして、</p><ol>{journeys.map(item => <li key={item.no}><span>{item.no}</span>「{item.title}」</li>)}</ol><p>をベースに、ご要望に合わせた旅をアレンジします。</p></div>
     <div className="land-operator-services"><p>旅行業者様の旅行商品造成に向けた地域コンテンツのご提案、<br />最上地域での宿泊・移動等の旅行サービスの手配、<br />撮影・体験コンテンツの企画・調整など、<br />旅行業者様からのご相談を承ります。</p></div>
-    <address><p>NPO法人MOYA<br />山形県最上郡金山町大字金山325</p><p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />（営業拠点：山形県新庄市沖ノ町5-1）</p></address>
-    <p className="business-inquiry"><a href="https://business.form-mailer.jp/lp/54d1d843367560" target="_blank" rel="noopener noreferrer">BUSINESS INQUIRY →</a></p>
+    <a className="business-inquiry" href="https://business.form-mailer.jp/lp/54d1d843367560" target="_blank" rel="noopener noreferrer">
+      <span>お問い合わせフォーム →</span>
+      <small lang="en">BUSINESS INQUIRY</small>
+    </a>
+    <div className="operator-details">
+      <p className="operator-brand">MOYA Travel</p>
+      <address>
+        <div className="operator-entity"><span className="operator-label">運営法人</span><p>特定非営利活動法人MOYA<br />山形県最上郡金山町大字金山325</p></div>
+        <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />営業拠点：山形県新庄市沖ノ町5-1<br />Email：<a href="mailto:contact@moya-travel.com">contact@moya-travel.com</a></p>
+      </address>
+    </div>
   </div>
 </div></section>; }
 export function Contact() {
