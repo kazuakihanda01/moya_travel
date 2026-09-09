@@ -49,15 +49,18 @@ type PhotoTrunk = {
   galleryImages: string[];
 };
 
-// Add a trunk here after placing its trunkNN01–07.jpg files in public/images/places/.
-// 01 is the featured image; the gallery accepts any one to six images from 02–07.
-const photoTrunks: PhotoTrunk[] = [{
+// JOURNEYS 01 owns Kaneyama's photo essay. Missing numbered files are removed by
+// TrunkPhoto, so photographs can be added non-sequentially without updating code.
+const kaneyamaTownscape: PhotoTrunk = {
   no: "01",
   nameJa: "金山の街並み",
   nameEn: "KANEYAMA TOWNSCAPE",
   featuredImage: "/images/places/trunk0101.jpg",
-  galleryImages: Array.from({ length: 6 }, (_, index) => `/images/places/trunk01${String(index + 2).padStart(2, "0")}.jpg`)
-}];
+  galleryImages: Array.from({ length: 99 }, (_, index) => `/images/places/trunk01${String(index + 1).padStart(2, "0")}.jpg`)
+};
+
+// Add future PLACES / PHOTOGRAPHS trunks here. trunk01 has moved to JOURNEYS 01.
+const photoTrunks: PhotoTrunk[] = [];
 
 const Label = ({ children }: { children: React.ReactNode }) => <p className="label">{children}</p>;
 
@@ -93,7 +96,31 @@ export function Introduction() {
     </div>
   </section>;
 }
-export function Journeys() { return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p></div></article>)}</div></section>; }
+export function Journeys() {
+  const [photoEssayOpen, setPhotoEssayOpen] = useState(false);
+  useEffect(() => {
+    if (!photoEssayOpen) return;
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setPhotoEssayOpen(false);
+    document.body.classList.add("trunk-view-open");
+    window.addEventListener("keydown", close);
+    return () => { document.body.classList.remove("trunk-view-open"); window.removeEventListener("keydown", close); };
+  }, [photoEssayOpen]);
+
+  return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" id={`journey-${item.no}`} key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p>{item.no === "01" && <button className="text-link journey-more" type="button" onClick={() => setPhotoEssayOpen(true)} aria-haspopup="dialog">MORE →</button>}</div></article>)}</div>
+    {photoEssayOpen && <div className="trunk-view journey-detail" role="dialog" aria-modal="true" aria-labelledby="journey-detail-title">
+      <button type="button" className="trunk-back" onClick={() => setPhotoEssayOpen(false)} aria-label="JOURNEYS 01へ戻る"><span aria-hidden="true">←</span> JOURNEYS</button>
+      <div className="trunk-view-inner">
+        <header className="journey-detail-header">
+          <p className="trunk-number">01</p>
+          <div className="journey-detail-title"><h2 id="journey-detail-title">美しい町並みを歩く旅</h2><p lang="en">A journey through beautiful townscapes.</p></div>
+          <div className="trunk-title"><h3>{kaneyamaTownscape.nameJa}</h3><p lang="en">{kaneyamaTownscape.nameEn}</p></div>
+        </header>
+        <div className="trunk-gallery journey-gallery">{kaneyamaTownscape.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${kaneyamaTownscape.nameJa}の写真 ${index + 1}`} />)}</div>
+        <button type="button" className="trunk-return" onClick={() => setPhotoEssayOpen(false)}><span aria-hidden="true">←</span> JOURNEYSへ戻る</button>
+      </div>
+    </div>}
+  </section>;
+}
 function TrunkPhoto({ src, alt, featured = false, onOpen }: { src: string; alt: string; featured?: boolean; onOpen?: () => void }) {
   const [missing, setMissing] = useState(false);
   if (missing) return null;
@@ -124,7 +151,7 @@ export function Places() {
       <header className="trunk-view-header"><p className="trunk-number">{openTrunk.no}</p><div className="trunk-title"><h3 id={`trunk-view-title-${openTrunk.no}`}>{openTrunk.nameJa}</h3><p lang="en">{openTrunk.nameEn}</p></div>
         {(openTrunk.descriptionJa || openTrunk.descriptionEn) && <div className="trunk-description">{openTrunk.descriptionJa && <p>{openTrunk.descriptionJa}</p>}{openTrunk.descriptionEn && <p lang="en">{openTrunk.descriptionEn}</p>}</div>}
       </header>
-      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.slice(0, 6).map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
+      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
       <button type="button" className="trunk-return" onClick={() => setOpenTrunk(null)}><span aria-hidden="true">←</span> PHOTO TRUNKSへ戻る</button>
     </div>
   </div>}</section>;
