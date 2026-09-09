@@ -33,6 +33,7 @@
 .travel-agency-label span{display:block}
 .travel-agency-label [lang="en"]{font:inherit;color:var(--muted)}
 .travel-agency{margin:0 0 45px;font-style:normal}
+.travel-agency-ja p{font-size:13px}
 .travel-agency div+div{margin-top:22px}
 .travel-agency [lang="en"]{margin-top:2px}
 footer{min-height:390px;gap:70px 80px}

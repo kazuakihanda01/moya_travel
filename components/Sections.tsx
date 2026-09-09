@@ -199,9 +199,9 @@ export function Contact() {
           <p>旅行者様からのお問い合わせ・旅行のご相談につきましては、<br />MOYA Travelが提携する旅行業者へお問い合わせください。</p>
           <p lang="en">For travel inquiries and consultations,<br />please contact our partner travel agency.</p>
         </div>
-        <div className="travel-agency-label"><span>提携先</span><span lang="en">PARTNER TRAVEL AGENCY</span></div>
+        <div className="travel-agency-label"><span lang="en">PARTNER TRAVEL AGENCY</span></div>
         <address className="travel-agency">
-          <div>
+          <div className="travel-agency-ja">
             <p>有限会社トランスオーシャンツーリスト</p>
             <p>山形県知事登録旅行業 第2-200号</p>
             <p>〒996-0021 山形県新庄市常葉町1-30</p>
