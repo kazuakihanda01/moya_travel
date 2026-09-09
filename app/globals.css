@@ -29,6 +29,9 @@
 .travelers-content [lang="en"]{color:#777;font-family:var(--font-serif);font-size:12px;line-height:1.75}
 .travelers-intro{margin-bottom:42px}
 .travelers-intro [lang="en"]{margin-top:10px}
+.travel-agency-label{margin-bottom:18px;font:500 9px/1.7 var(--font-ui);letter-spacing:.2em}
+.travel-agency-label span{display:block}
+.travel-agency-label [lang="en"]{font:inherit;color:var(--muted)}
 .travel-agency{margin:0 0 45px;font-style:normal}
 .travel-agency div+div{margin-top:22px}
 .travel-agency [lang="en"]{margin-top:2px}

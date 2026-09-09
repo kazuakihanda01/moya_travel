@@ -180,7 +180,7 @@ export function Professionals() { return <section className="professionals" id="
     <div className="operator-details">
       <p className="operator-brand">MOYA Travel</p>
       <address>
-        <div className="operator-entity"><span className="operator-label">運営法人</span><p>特定非営利活動法人MOYA<br />山形県最上郡金山町大字金山325</p></div>
+        <div className="operator-entity"><p>特定非営利活動法人MOYA<br />山形県最上郡金山町大字金山325</p></div>
         <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />営業拠点：山形県新庄市沖ノ町5-1<br />Email：<a href="mailto:contact@moya-travel.com">contact@moya-travel.com</a></p>
       </address>
     </div>
@@ -196,9 +196,10 @@ export function Contact() {
       </div>
       <div className="travelers-content">
         <div className="travelers-intro">
-          <p>旅行者様からのお問い合わせ・旅行のご相談を承ります。<br />弊社が提携する旅行業者をご紹介いたします。</p>
-          <p lang="en">We welcome inquiries and travel consultations from travelers.<br />We can introduce you to one of our partner travel agencies.</p>
+          <p>旅行者様からのお問い合わせ・旅行のご相談につきましては、<br />MOYA Travelが提携する旅行業者へお問い合わせください。</p>
+          <p lang="en">For travel inquiries and consultations,<br />please contact our partner travel agency.</p>
         </div>
+        <div className="travel-agency-label"><span>提携先</span><span lang="en">PARTNER TRAVEL AGENCY</span></div>
         <address className="travel-agency">
           <div>
             <p>有限会社トランスオーシャンツーリスト</p>
