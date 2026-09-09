@@ -57,7 +57,11 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     fallbackImage: "/images/journey-stay.jpg",
     slug: "historic-hot-springs-and-architecture",
     locations: [{ nameJa: "瀬見温泉街・喜至楼 ／ 最上", nameEn: "Semi Onsen & Kijirō / Mogami" }],
-    galleryImages: []
+    galleryImages: [
+      "/images/02_03_01.jpg",
+      "/images/02_03_02.jpg",
+      "/images/02_03_03.jpg",
+    ]
   }
 ];
 
