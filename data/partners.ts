@@ -35,3 +35,7 @@ export const partners: Partner[] = [
     url: null
   }
 ];
+
+// Set this to a file added under `public` when a representative Partners image
+// is available. Keeping it null omits the image area entirely on the top page.
+export const partnersRepresentativeImage: string | null = null;
