@@ -2,23 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { topics } from "../data/topics";
 
 const navigationLinks = [
-  { label: "ABOUT MOYA TRAVEL", href: "#about" },
-  { label: "JOURNEYS & LOCAL EXPERIENCES", href: "#journeys" },
-  { label: "COLLABORATIVE PROJECTS", href: "#projects" },
-  { label: "TOPICS", href: "#topics" },
+  { label: "ABOUT MOYA TRAVEL", href: "/#about" },
+  { label: "JOURNEYS & LOCAL EXPERIENCES", href: "/#journeys" },
+  { label: "COLLABORATIVE PROJECTS", href: "/#projects" },
+  { label: "TOPICS", href: "/#topics" },
   // Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready.
   // { label: "PLACES / PHOTOGRAPHS", href: "#places" },
-  { label: "LAND OPERATOR", href: "#land-operator" },
-  { label: "FOR TRAVELERS", href: "#for-travelers" }
-];
-
-type Topic = { date: string; titleJa: string; titleEn: string; href: string };
-
-const topics: Topic[] = [
-  { date: "2026.09.09", titleJa: "MOYA Travelウェブサイトを公開しました。", titleEn: "The MOYA Travel website is now live.", href: "#top" },
-  { date: "2026.08.20", titleJa: "Capture Tokyoとのコラボレーションプロジェクトについて", titleEn: "Our collaborative project with Capture Tokyo.", href: "https://www.capturetokyo.com/photography-experience" }
+  { label: "LAND OPERATOR", href: "/#land-operator" },
+  { label: "FOR TRAVELERS", href: "/#for-travelers" }
 ];
 
 const journeys = [
@@ -74,7 +68,7 @@ const Label = ({ children }: { children: React.ReactNode }) => <p className="lab
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  return <header className="header"><a href="#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{navigationLinks.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}</nav></header>;
+  return <header className="header"><a href="/#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{navigationLinks.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}</nav></header>;
 }
 export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami/Yamagata.</p></div></section>; }
 export function Introduction() {
@@ -169,10 +163,9 @@ export function Topics() {
   return <section className="section wrap topics" id="topics">
     <Label>TOPICS</Label>
     <div className="topics-heading"><h2>MOYA Travelからのお知らせ</h2><p lang="en">News from MOYA Travel.</p></div>
-    <div className="topics-list">{topics.map(topic => {
-      const external = /^https?:\/\//i.test(topic.href);
-      return <article className="topic" key={`${topic.date}-${topic.href}`}><time>{topic.date}</time><a href={topic.href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}><h3>{topic.titleJa}</h3><p lang="en">{topic.titleEn}</p></a></article>;
-    })}</div>
+    <div className="topics-list">{topics.length === 0
+      ? <p className="topics-empty">現在、MOYA Travelからのお知らせはありません</p>
+      : topics.map(topic => <article className="topic" key={topic.topicId}><time dateTime={topic.date.replaceAll(".", "-")}>{topic.date}</time><a href={`/topics/${topic.topicId}`}><h3>{topic.titleJa}</h3><p lang="en">{topic.titleEn}</p></a></article>)}</div>
   </section>;
 }
 export function Professionals() { return <section className="professionals" id="land-operator"><div className="wrap land-operator">
@@ -217,7 +210,7 @@ export function Contact() {
 export function Footer() {
   return <footer>
     <div className="footer-identity">
-      <a className="footer-brand" href="#top">MOYA Travel</a>
+      <a className="footer-brand" href="/#top">MOYA Travel</a>
       <address>
         <p>NPO法人MOYA<br />山形県最上郡金山町大字金山325</p>
         <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />（営業拠点：山形県新庄市沖ノ町5-1）</p>
