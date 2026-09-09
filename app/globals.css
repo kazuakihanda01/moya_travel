@@ -28,3 +28,7 @@ footer p,footer small{letter-spacing:.14em}
   .footer-brand{font-size:22px}
   .footer-identity address{margin-top:34px}
 }
+
+/* JOURNEYS 01 photo essay */
+.journey-more{display:block;margin-top:28px;padding:4px 0;border:0;background:none;cursor:pointer}.journey-detail-header{display:grid;grid-template-columns:70px minmax(330px,.9fr) minmax(260px,.75fr);gap:4vw;align-items:start;margin-bottom:clamp(80px,10vw,150px);padding-bottom:55px;border-bottom:1px solid var(--line)}.journey-detail-title h2{margin:0;font-weight:400;font-size:clamp(28px,3vw,43px);line-height:1.5;letter-spacing:.06em}.journey-detail-title p{margin:5px 0 0;color:#626260;font:italic 17px/1.75 var(--font-serif)}.journey-detail .trunk-title{padding-top:7px}.journey-gallery .trunk-photo:nth-child(6n+4){grid-column:2/span 4}.journey-gallery .trunk-photo:nth-child(6n+5){grid-column:7/span 6;margin-top:12%}.journey-gallery .trunk-photo:nth-child(6n){grid-column:4/span 6;margin-top:0}
+@media(max-width:700px){.journey-detail-header{grid-template-columns:38px 1fr;gap:0 12px;margin-bottom:70px;padding-bottom:38px}.journey-detail-title h2{font-size:27px}.journey-detail-title p{font-size:15px}.journey-detail-header .trunk-title{grid-column:2;margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}.journey-gallery .trunk-photo:nth-child(6n+4),.journey-gallery .trunk-photo:nth-child(6n+5),.journey-gallery .trunk-photo:nth-child(6n){width:100%;margin:0 0 54px}}
