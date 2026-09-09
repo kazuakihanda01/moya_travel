@@ -6,8 +6,8 @@ import { Footer, Header } from "../../../components/Sections";
 import { mogamiJourneyThemes } from "../../../data/mogamiJourneys";
 
 export const metadata: Metadata = {
-  title: "最上を知る、小さな旅。 | MOYA Travel",
-  description: "最上の風景や場所を、その土地で過ごす時間とともに紹介します。"
+  title: "最上の小さな旅。 | MOYA Travel",
+  description: "最上の風景や場所、その土地で過ごす時間や体験を紹介します。"
 };
 
 export default function DiscoverMogamiPage() {
@@ -16,8 +16,8 @@ export default function DiscoverMogamiPage() {
       <a className="mogami-back text-link" href="/#journeys">← BACK / JOURNEYS</a>
       <div className="mogami-intro-grid">
         <p className="mogami-number">02</p>
-        <div><h1>最上を知る、小さな旅。</h1><p className="mogami-heading-en" lang="en">Ways to discover Mogami.</p></div>
-        <p className="mogami-deck">最上の風景や場所を、<br />その土地で過ごす時間とともに紹介します。</p>
+        <div><h1>最上の小さな旅。</h1><p className="mogami-heading-en" lang="en">Small journeys through Mogami.</p></div>
+        <p className="mogami-deck">最上の風景や場所、その土地で過ごす時間や体験を紹介します。<br /><span lang="en">Discover the landscapes and places of Mogami through the moments and experiences found there.</span></p>
       </div>
     </header>
     <section className="mogami-themes wrap" aria-label="最上を知る旅のテーマ">
