@@ -27,7 +27,11 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     fallbackImage: "/images/journey-field.jpg",
     slug: "in-the-cedar-forests",
     locations: [],
-    galleryImages: []
+    galleryImages: [
+      "/images/02_01_01.jpg",
+      "/images/02_01_02.jpg",
+      "/images/02_01_03.jpg",
+    ],
   },
   {
     id: "along-the-water",
