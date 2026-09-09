@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { topics } from "../data/topics";
+import { partners } from "../data/partners";
 
 const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "/#about" },
   { label: "JOURNEYS & LOCAL EXPERIENCES", href: "/#journeys" },
   { label: "COLLABORATIVE PROJECTS", href: "/#projects" },
+  { label: "PARTNERS", href: "/#partners" },
   { label: "TOPICS", href: "/#topics" },
   // Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready.
   // { label: "PLACES / PHOTOGRAPHS", href: "#places" },
@@ -159,6 +161,30 @@ export function Places() {
   </div>}</section>;
 }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
+export function Partners() {
+  const featurePartners = partners
+    .filter(partner => partner.image)
+    .sort((a, b) => Number(b.category === "STAY") - Number(a.category === "STAY"));
+  const textPartners = partners.filter(partner => !partner.image);
+
+  return <section className="section wrap partners" id="partners">
+    <Label>PARTNERS</Label>
+    <header className="partners-heading">
+      <div><h2>最上の旅を、ともにつくる。</h2><p lang="en">Creating journeys together in Mogami.</p></div>
+      <div className="partners-intro"><p>宿泊、移動、地域での体験。<br />MOYA Travelは、最上をよく知る地域のパートナーとともに、<br />この土地ならではの旅をつくります。</p><p lang="en">Stays, transportation, and local experiences.<br />MOYA Travel works with trusted local partners<br />to create journeys rooted in the landscapes and communities of Mogami.</p></div>
+    </header>
+    {featurePartners.length > 0 && <div className="feature-partners">{featurePartners.map((partner, index) => <article className={`feature-partner feature-partner-${index % 3 + 1}`} key={partner.id}>
+      <p className="partner-category">{partner.category}</p>
+      <div className="feature-partner-image"><Image src={partner.image!} alt={partner.nameJa} fill sizes="(max-width: 700px) 100vw, 75vw" /></div>
+      <div className="partner-details"><h3>{partner.nameJa}</h3><p className="partner-name-en" lang="en">{partner.nameEn}</p>{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}{partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">VIEW PARTNER →</a>}</div>
+    </article>)}</div>}
+    {textPartners.length > 0 && <div className="text-partners">{textPartners.map(partner => <article className="text-partner" key={partner.id}>
+      <p className="partner-category">{partner.category}</p>
+      <div className="partner-details"><h3>{partner.nameJa}</h3><p className="partner-name-en" lang="en">{partner.nameEn}</p>{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}</div>
+      {partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>}
+    </article>)}</div>}
+  </section>;
+}
 export function Topics() {
   return <section className="section wrap topics" id="topics">
     <Label>TOPICS</Label>
