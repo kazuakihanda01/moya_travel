@@ -35,31 +35,6 @@ export const topics: Topic[] = [
         href: "https://www.moya-kaneyama.org/events/lbsp6slo8uzrm0pgd3028y8t9m7rvd"
       }
     ]
-  },
-  {
-    topicId: "20260909-01",
-    date: "2026.09.09",
-    titleJa: "MOYA Travelウェブサイトを公開しました。",
-    titleEn: "The MOYA Travel website is now live.",
-    body: [
-      "MOYA Travelのウェブサイトを公開しました。",
-      "今後のお知らせは、こちらのTOPICSでご案内します。"
-    ]
-  },
-  {
-    topicId: "20260820-01",
-    date: "2026.08.20",
-    titleJa: "Capture Tokyoとのコラボレーションプロジェクトについて",
-    titleEn: "Our collaborative project with Capture Tokyo.",
-    body: [
-      "Capture TokyoとのコラボレーションによるPhotography Experienceについてご案内します。"
-    ],
-    externalLinks: [
-      {
-        label: "Capture Tokyo Photography Experience",
-        href: "https://www.capturetokyo.com/photography-experience"
-      }
-    ]
   }
 ];
 
