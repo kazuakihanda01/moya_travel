@@ -42,7 +42,11 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     fallbackImage: "/images/journey-walk.jpg",
     slug: "along-the-water",
     locations: [{ nameJa: "田屋の一本桜・谷口銀山・春木川 ／ 金山", nameEn: "Taya’s Lone Cherry Tree, Taniguchi Silver Mine & Haruki River / Kaneyama" }],
-    galleryImages: []
+    galleryImages: [
+      "/images/02_02_01.jpg",
+      "/images/02_02_02.jpg",
+      "/images/02_02_03.jpg",
+    ]
   },
   {
     id: "historic-hot-springs",
