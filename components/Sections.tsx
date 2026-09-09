@@ -7,10 +7,18 @@ const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "#about" },
   { label: "JOURNEYS & LOCAL EXPERIENCES", href: "#journeys" },
   { label: "COLLABORATIVE PROJECTS", href: "#projects" },
+  { label: "TOPICS", href: "#topics" },
   // Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready.
   // { label: "PLACES / PHOTOGRAPHS", href: "#places" },
   { label: "LAND OPERATOR", href: "#land-operator" },
   { label: "FOR TRAVELERS", href: "#for-travelers" }
+];
+
+type Topic = { date: string; titleJa: string; titleEn: string; href: string };
+
+const topics: Topic[] = [
+  { date: "2026.09.09", titleJa: "MOYA Travelウェブサイトを公開しました。", titleEn: "The MOYA Travel website is now live.", href: "#top" },
+  { date: "2026.08.20", titleJa: "Capture Tokyoとのコラボレーションプロジェクトについて", titleEn: "Our collaborative project with Capture Tokyo.", href: "https://www.capturetokyo.com/photography-experience" }
 ];
 
 const journeys = [
@@ -157,6 +165,16 @@ export function Places() {
   </div>}</section>;
 }
 export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
+export function Topics() {
+  return <section className="section wrap topics" id="topics">
+    <Label>TOPICS</Label>
+    <div className="topics-heading"><h2>MOYA Travelからのお知らせ</h2><p lang="en">News from MOYA Travel.</p></div>
+    <div className="topics-list">{topics.map(topic => {
+      const external = /^https?:\/\//i.test(topic.href);
+      return <article className="topic" key={`${topic.date}-${topic.href}`}><time>{topic.date}</time><a href={topic.href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}><h3>{topic.titleJa}</h3><p lang="en">{topic.titleEn}</p></a></article>;
+    })}</div>
+  </section>;
+}
 export function Professionals() { return <section className="professionals" id="land-operator"><div className="wrap land-operator">
   <div className="land-operator-heading"><Label>LAND OPERATOR</Label><h2>最上だから、つくれる旅がある。</h2><p lang="en">Journeys that can only be created in Mogami.</p></div>
   <div className="land-operator-content">
