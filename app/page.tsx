@@ -1,4 +1,4 @@
-import { Contact, Footer, Header, Hero, Introduction, Journeys, Places, Professionals, Projects, Topics } from "../components/Sections";
+import { Contact, Footer, Header, Hero, Introduction, Journeys, Partners, Places, Professionals, Projects, Topics } from "../components/Sections";
 
 export default function Home() {
   return <>
@@ -8,6 +8,7 @@ export default function Home() {
       <Introduction />
       <Journeys />
       <Projects />
+      <Partners />
       <Topics />
       {/* Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready. */}
       {/* <Places /> */}
