@@ -115,6 +115,24 @@ footer p,footer small{letter-spacing:.14em}
 .mogami-theme-03 .mogami-theme-image{grid-column:1/span 10;height:min(47vw,630px)}
 .mogami-theme-03 .mogami-theme-copy{grid-column:7/span 6;margin-top:52px}
 .mogami-return{padding-bottom:130px}
+
+/* JOURNEYS 02 — individual photo trunks */
+.mogami-trunk{border-top:1px solid var(--line)}
+.mogami-trunk-inner{padding-top:55px;padding-bottom:150px}
+.mogami-trunk-back{display:inline-block;margin-bottom:clamp(105px,13vw,185px)}
+.mogami-trunk-header{display:grid;grid-template-columns:70px minmax(300px,1fr);gap:4vw;align-items:start;margin-bottom:clamp(100px,14vw,210px)}
+.mogami-trunk-number{margin:13px 0 0;color:var(--muted);font:400 12px/1 var(--font-ui);letter-spacing:.2em}
+.mogami-trunk-title h1{margin:0;font-weight:400;font-size:clamp(34px,4vw,58px);line-height:1.45;letter-spacing:.08em}
+.mogami-trunk-title>p{margin:7px 0 0;color:#626260;font:italic 18px/1.5 var(--font-serif);letter-spacing:.04em}
+.mogami-trunk-locations{width:min(100%,340px);margin-top:45px;padding-top:20px;border-top:1px solid var(--line)}
+.mogami-trunk-locations p{display:flex;align-items:baseline;gap:18px;margin:0;font-size:13px;letter-spacing:.1em}
+.mogami-trunk-locations [lang="en"]{color:var(--muted);font:500 9px/1.5 var(--font-ui);letter-spacing:.2em}
+.mogami-trunk-gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(75px,11vw,165px) clamp(18px,3vw,48px);align-items:start}
+.mogami-trunk-photo{grid-column:1/span 8;margin:0}
+.mogami-trunk-photo:nth-child(3n+2){grid-column:8/span 5;margin-top:20%}
+.mogami-trunk-photo:nth-child(3n){grid-column:3/span 6}
+.mogami-trunk-photo img{display:block;width:100%;height:auto;filter:grayscale(100%)}
+.mogami-trunk-return{display:inline-block;margin-top:clamp(110px,15vw,220px)}
 @media(max-width:700px){
   .mogami-intro{padding-top:37px;padding-bottom:125px}
   .mogami-back{margin-bottom:90px}
@@ -136,4 +154,14 @@ footer p,footer small{letter-spacing:.14em}
   .mogami-theme-en{font-size:14px;line-height:1.55}
   .mogami-locations{margin-top:29px;padding-top:17px}
   .mogami-return{padding-bottom:95px}
+  .mogami-trunk-inner{padding-top:37px;padding-bottom:95px}
+  .mogami-trunk-back{margin-bottom:90px}
+  .mogami-trunk-header{grid-template-columns:35px 1fr;gap:0 12px;margin-bottom:110px}
+  .mogami-trunk-number{margin-top:9px}
+  .mogami-trunk-title h1{font-size:29px;line-height:1.55}
+  .mogami-trunk-title>p{font-size:15px}
+  .mogami-trunk-locations{margin-top:34px;padding-top:17px}
+  .mogami-trunk-gallery{display:block}
+  .mogami-trunk-photo,.mogami-trunk-photo:nth-child(3n+2),.mogami-trunk-photo:nth-child(3n){width:100%;margin:0 0 70px}
+  .mogami-trunk-return{margin-top:75px}
 }
