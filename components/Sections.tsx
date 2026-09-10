@@ -76,26 +76,14 @@ export function Hero() { return <section className="hero" id="top"><Image src="/
 export function Introduction() {
   return <section className="intro wrap" id="about">
     <Label>ABOUT MOYA TRAVEL</Label>
-    <div className="intro-grid">
-      <div className="intro-lead">
-        <div className="intro-pair">
-          <h2>風景と時間を旅する。</h2>
-          <p lang="en">Journey through landscapes and time.</p>
-        </div>
-        <div className="intro-pair">
-          <h2>出会えた物語を写真にする。</h2>
-          <p lang="en">Turning the stories we encounter into photographs.</p>
-        </div>
+    <div className="intro-content">
+      <div className="intro-ja">
+        <h2>山形県最上地域</h2>
+        <p>MOYA Travelは、この土地に流れる時間や風景を、<br />「旅」と、写真などを通じた「体験」として届けていきます。</p>
       </div>
-      <div className="intro-body">
-        <div className="intro-pair">
-          <p>山形県最上地域。</p>
-          <p lang="en">Mogami, Yamagata, Japan.</p>
-        </div>
-        <div className="intro-pair">
-          <p>MOYA Travelは、この土地に流れる時間や風景を、<br />旅と写真を通じた体験として届けていきます。</p>
-          <p lang="en">MOYA Travel creates experiences that bring you closer to the landscapes<br />and rhythms of this land through travel and photography.</p>
-        </div>
+      <div className="intro-en" lang="en">
+        <p>Mogami, Yamagata, Japan.</p>
+        <p>MOYA Travel creates experiences that bring you closer to the landscapes<br />and rhythms of this land through travel and photography.</p>
       </div>
     </div>
   </section>;
