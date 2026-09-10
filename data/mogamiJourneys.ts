@@ -72,6 +72,24 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
       "/images/02_03_07.jpg",
       "/images/02_03_08.jpg",
     ]
+  },
+  {
+    id: "along-the-railway",
+    number: "04",
+    titleJa: "鉄路",
+    titleEn: "Along the Railway",
+    image: "/images/02_04_TOP.jpg",
+    fallbackImage: "/images/journey-field.jpg",
+    slug: "along-the-railway",
+    locations: [{ nameJa: "陸羽東線 ／ 新庄・最上", nameEn: "Rikuu East Line / Shinjo & Mogami" }],
+    galleryImages: [
+      "/images/02_04_01.jpg",
+      "/images/02_04_02.jpg",
+      "/images/02_04_03.jpg",
+      "/images/02_04_04.jpg",
+      "/images/02_04_05.jpg",
+      "/images/02_04_06.jpg",
+    ]
   }
 ];
 
