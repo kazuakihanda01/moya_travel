@@ -159,12 +159,12 @@ footer p,footer small{letter-spacing:.14em}
 .mogami-locations{margin-top:37px;padding-top:20px;border-top:1px solid var(--line);width:min(100%,310px)}
 .mogami-locations p{display:flex;align-items:baseline;gap:18px;margin:0;font-size:13px;letter-spacing:.1em}
 .mogami-locations [lang="en"]{color:var(--muted);font:500 9px/1.5 var(--font-ui);letter-spacing:.2em}
-.mogami-theme-01 .mogami-theme-copy{grid-column:1/span 4;padding-top:11vh}
-.mogami-theme-01 .mogami-theme-image{grid-column:7/span 5;height:min(69vw,790px)}
-.mogami-theme-02 .mogami-theme-image{grid-column:4/span 9;height:min(42vw,555px)}
-.mogami-theme-02 .mogami-theme-copy{grid-column:6/span 6;margin-top:46px}
-.mogami-theme-03 .mogami-theme-image{grid-column:1/span 10;height:min(47vw,630px)}
-.mogami-theme-03 .mogami-theme-copy{grid-column:7/span 6;margin-top:52px}
+.mogami-theme:nth-child(3n + 1) .mogami-theme-copy{grid-column:1/span 4;padding-top:11vh}
+.mogami-theme:nth-child(3n + 1) .mogami-theme-image{grid-column:7/span 5;height:min(69vw,790px)}
+.mogami-theme:nth-child(3n + 2) .mogami-theme-image{grid-column:4/span 9;height:min(42vw,555px)}
+.mogami-theme:nth-child(3n + 2) .mogami-theme-copy{grid-column:6/span 6;margin-top:46px}
+.mogami-theme:nth-child(3n) .mogami-theme-image{grid-column:1/span 10;height:min(47vw,630px)}
+.mogami-theme:nth-child(3n) .mogami-theme-copy{grid-column:7/span 6;margin-top:52px}
 .mogami-return{padding-bottom:130px}
 
 /* JOURNEYS 02 — individual photo trunks */
@@ -196,10 +196,10 @@ footer p,footer small{letter-spacing:.14em}
   .mogami-theme{display:flex;flex-direction:column}
   .mogami-theme+.mogami-theme{margin-top:125px}
   .mogami-theme-image{order:0;width:100%;height:0!important;padding-bottom:71%}
-  .mogami-theme-01 .mogami-theme-image{width:82%;margin-left:auto;padding-bottom:112%}
-  .mogami-theme-02 .mogami-theme-image{width:94%;margin-left:auto;padding-bottom:62%}
-  .mogami-theme-03 .mogami-theme-image{padding-bottom:68%}
-  .mogami-theme-copy,.mogami-theme-01 .mogami-theme-copy,.mogami-theme-02 .mogami-theme-copy,.mogami-theme-03 .mogami-theme-copy{order:1;width:100%;margin:32px 0 0;padding:0}
+  .mogami-theme:nth-child(3n + 1) .mogami-theme-image{width:82%;margin-left:auto;padding-bottom:112%}
+  .mogami-theme:nth-child(3n + 2) .mogami-theme-image{width:94%;margin-left:auto;padding-bottom:62%}
+  .mogami-theme:nth-child(3n) .mogami-theme-image{padding-bottom:68%}
+  .mogami-theme-copy{order:1;width:100%;margin:32px 0 0;padding:0}
   .mogami-theme-number{margin-bottom:18px}
   .mogami-theme-copy h2{font-size:25px}
   .mogami-theme-en{font-size:14px;line-height:1.55}
