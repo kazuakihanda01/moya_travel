@@ -58,6 +58,24 @@ export const partners: Partner[] = [
     url: "https://shiki-hotel.com/"
   },
   {
+    id: "kijiro-semi-onsen",
+    category: "STAY",
+    nameJa: "喜至楼（瀬見温泉）",
+    nameEn: "KIJIRŌ / SEMI ONSEN",
+    copyJa: "山形で最も古い木造建築旅館",
+    copyEn: "Yamagata’s oldest wooden ryokan.",
+    image: "/images/stay_03_TOP.jpg",
+    galleryImages: [
+      "/images/stay_03_01.jpg",
+      "/images/stay_03_02.jpg",
+      "/images/stay_03_03.jpg",
+      "/images/stay_03_04.jpg",
+      "/images/stay_03_05.jpg",
+      "/images/stay_03_06.jpg"
+    ],
+    url: null
+  },
+  {
     id: "trans-ocean-bus",
     category: "TRANSPORTATION",
     nameJa: "トランスオーシャンバス株式会社",
