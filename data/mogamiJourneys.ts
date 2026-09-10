@@ -31,6 +31,9 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
       "/images/02_01_01.jpg",
       "/images/02_01_02.jpg",
       "/images/02_01_03.jpg",
+      "/images/02_01_04.jpg",
+      "/images/02_01_05.jpg",
+      "/images/02_01_06.jpg",
     ],
   },
   {
