@@ -7,32 +7,63 @@ export type Partner = {
   nameEn: string;
   copyJa?: string | null;
   copyEn?: string | null;
+  descriptionJa?: string | null;
+  descriptionEn?: string | null;
   image?: string | null;
+  galleryImages: string[];
   url?: string | null;
+  linkLabel?: string;
 };
 
-// Add partner photographs to public/images, then set `image` to switch that
-// partner from the text directory to the editorial feature layout.
+// Register only photographs that exist under public/images. Setting `image`
+// switches a partner from the text directory to the editorial feature layout;
+// `galleryImages` enables its Photo Trunk without guessing numbered filenames.
 export const partners: Partner[] = [
   {
     id: "schoenes-heim-kaneyama",
     category: "STAY",
     nameJa: "シェーネスハイム金山",
     nameEn: "SCHÖNES HEIM KANEYAMA",
-    copyJa: "金山の森に滞在する。",
-    copyEn: "Stay among the forests of Kaneyama.",
+    copyJa: "森につつまれた美しい場所",
+    copyEn: "A beautiful place surrounded by forest.",
+    descriptionJa: "グリーンバレー神室にたたずむ滞在型リゾートホテル",
+    descriptionEn: "A resort hotel for a relaxing stay in Green Valley Kamuro.",
+    image: "/images/stay_01_TOP.jpg",
+    galleryImages: [
+      "/images/stay_01_01.jpg",
+      "/images/stay_01_02.jpg",
+      "/images/stay_01_03.jpg",
+      "/images/stay_01_04.jpg",
+      "/images/stay_01_05.jpg",
+      "/images/stay_01_06.jpg",
+      "/images/stay_01_07.jpg"
+    ],
+    url: "https://schonesheim.jp/",
+    linkLabel: "VIEW PARTNER →"
+  },
+  {
+    id: "shiki-hotel",
+    category: "STAY",
+    nameJa: "SHIKI HOTEL",
+    nameEn: "SHIKI HOTEL",
+    copyJa: "ときを忘れ、四季を巡る",
+    copyEn: "Lose track of time and journey through the seasons.",
+    descriptionJa: "悠久の四季を超え、人々が紡いだ、文化を愛す宿",
+    descriptionEn: "A place that cherishes the culture woven by generations through the passing seasons.",
     image: null,
-    url: null
+    galleryImages: [],
+    url: "https://shiki-hotel.com/"
   },
   {
     id: "trans-ocean-bus",
     category: "TRANSPORTATION",
-    nameJa: "トランスオーシャンバス",
+    nameJa: "トランスオーシャンバス株式会社",
     nameEn: "TRANS OCEAN BUS",
     copyJa: null,
     copyEn: null,
     image: null,
-    url: null
+    galleryImages: [],
+    url: "https://www.to-bus.com/"
   }
 ];
 
