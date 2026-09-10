@@ -16,7 +16,7 @@ export default function DiscoverMogamiPage() {
       <a className="mogami-back text-link" href="/#journeys">← BACK / JOURNEYS</a>
       <div className="mogami-intro-grid">
         <p className="mogami-number">02</p>
-        <div><h1>最上の小さな旅。</h1><p className="mogami-heading-en" lang="en">Small journeys through Mogami.</p></div>
+        <div><h1>最上の旅をつくる</h1><p className="mogami-heading-en" lang="en">Creating journeys through Mogami.</p></div>
         <p className="mogami-deck">風景や場所、その土地で過ごす時間や体験を紹介します。<br /><span lang="en">Discover the landscapes and places of Mogami through the moments and experiences found there.</span></p>
       </div>
     </header>
