@@ -50,8 +50,11 @@ export const partners: Partner[] = [
     copyEn: "Lose track of time and journey through the seasons.",
     descriptionJa: "悠久の四季を超え、人々が紡いだ、文化を愛す宿",
     descriptionEn: "A place that cherishes the culture woven by generations through the passing seasons.",
-    image: null,
-    galleryImages: [],
+    image: "/images/stay_02_TOP.jpg",
+    galleryImages: [
+      "/images/stay_02_01.jpg",
+      "/images/stay_02_02.jpg"
+    ],
     url: "https://shiki-hotel.com/"
   },
   {
