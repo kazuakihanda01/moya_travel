@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { topics } from "../data/topics";
-import { PartnerCategory, partners, partnersRepresentativeImage } from "../data/partners";
+import { Partner, PartnerCategory, partners, partnersRepresentativeImage } from "../data/partners";
 
 const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "/#about" },
@@ -176,6 +176,15 @@ export function Partners() {
 const partnerCategories: PartnerCategory[] = ["STAY", "TRANSPORTATION", "EXPERIENCE", "LOCAL PARTNER"];
 
 export function PartnersDirectory() {
+  const [openPartner, setOpenPartner] = useState<Partner | null>(null);
+  useEffect(() => {
+    if (!openPartner) return;
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setOpenPartner(null);
+    document.body.classList.add("trunk-view-open");
+    window.addEventListener("keydown", close);
+    return () => { document.body.classList.remove("trunk-view-open"); window.removeEventListener("keydown", close); };
+  }, [openPartner]);
+
   return <main className="partners-page">
     <section className="wrap partners-directory">
       <a className="text-link partners-back" href="/#partners">← BACK TO MOYA TRAVEL</a>
@@ -192,19 +201,25 @@ export function PartnersDirectory() {
         return <section className="partner-category-section" key={category}>
           <h2>{category}</h2>
           {featured.length > 0 && <div className="feature-partners">{featured.map((partner, index) => <article className={`feature-partner feature-partner-${index % 3 + 1}`} key={partner.id}>
-            <p className="partner-type">FEATURE PARTNER</p>
-            <div className="feature-partner-image"><Image src={partner.image!} alt={partner.nameJa} fill sizes="(max-width: 700px) 100vw, 75vw" /></div>
-            <div className="partner-details"><h3>{partner.nameJa}</h3><p className="partner-name-en" lang="en">{partner.nameEn}</p>{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}{partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>}</div>
+            <button className="feature-partner-image" type="button" onClick={() => partner.galleryImages.length && setOpenPartner(partner)} aria-label={`${partner.nameJa}のPhoto Trunkを開く`} disabled={!partner.galleryImages.length}><Image src={partner.image!} alt={`${partner.nameJa}の代表写真`} fill sizes="(max-width: 700px) 100vw, 75vw" /></button>
+            <div className="partner-details"><h3>{partner.nameJa}</h3>{partner.nameEn !== partner.nameJa && <p className="partner-name-en" lang="en">{partner.nameEn}</p>}{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.descriptionJa && <p className="partner-description-ja">{partner.descriptionJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}{partner.descriptionEn && <p className="partner-description-en" lang="en">{partner.descriptionEn}</p>}{partner.galleryImages.length > 0 && <button className="text-link partner-photographs" type="button" onClick={() => setOpenPartner(partner)}>VIEW PHOTOGRAPHS →</button>}{partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">{partner.linkLabel ?? "VISIT WEBSITE ↗"}</a>}</div>
           </article>)}</div>}
           {textOnly.length > 0 && <div className="text-partners">{textOnly.map(partner => <article className="text-partner" key={partner.id}>
-            <p className="partner-type">TEXT PARTNER</p>
-            <div className="partner-details"><h3>{partner.nameJa}</h3><p className="partner-name-en" lang="en">{partner.nameEn}</p>{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}</div>
+            <div className="partner-details"><h3>{partner.nameJa}</h3>{partner.nameEn !== partner.nameJa && <p className="partner-name-en" lang="en">{partner.nameEn}</p>}{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.descriptionJa && <p className="partner-description-ja">{partner.descriptionJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}{partner.descriptionEn && <p className="partner-description-en" lang="en">{partner.descriptionEn}</p>}</div>
             {partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>}
           </article>)}</div>}
         </section>;
       })}</div>
       <a className="text-link partners-return" href="/#partners">← BACK TO MOYA TRAVEL</a>
     </section>
+    {openPartner && <div className="trunk-view" role="dialog" aria-modal="true" aria-labelledby="partner-trunk-title">
+      <button type="button" className="trunk-back" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERS</button>
+      <div className="trunk-view-inner">
+        <header className="trunk-view-header"><p className="trunk-number">{openPartner.category} {String(partners.filter(partner => partner.category === openPartner.category).findIndex(partner => partner.id === openPartner.id) + 1).padStart(2, "0")}</p><div className="trunk-title"><h3 id="partner-trunk-title">{openPartner.nameJa}</h3>{openPartner.nameEn !== openPartner.nameJa && <p lang="en">{openPartner.nameEn}</p>}</div></header>
+        <div className="trunk-gallery" data-count={openPartner.galleryImages.length}>{openPartner.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openPartner.nameJa}の写真 ${index + 1}`} />)}</div>
+        <button type="button" className="trunk-return" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERSへ戻る</button>
+      </div>
+    </div>}
   </main>;
 }
 export function Topics() {
