@@ -228,8 +228,7 @@ export function Professionals() { return <section className="professionals" id="
     <div className="operator-details">
       <p className="operator-brand">MOYA Travel</p>
       <address>
-        <div className="operator-entity"><p>特定非営利活動法人MOYA<br />山形県最上郡金山町大字金山325</p></div>
-        <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />営業拠点：山形県新庄市沖ノ町5-1<br />Email：<a href="mailto:contact@moya-travel.com">contact@moya-travel.com</a></p>
+        <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />Email：<a href="mailto:contact@moya-travel.com">contact@moya-travel.com</a></p>
       </address>
     </div>
   </div>
