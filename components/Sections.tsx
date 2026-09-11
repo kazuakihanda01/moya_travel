@@ -29,8 +29,8 @@ const journeys = [
     no: "02",
     title: "最上を知る旅",
     titleEn: "Discover Mogami.",
-    text: <>自然、温泉、食、地域文化。<br />最上を彩る8つの地域、それぞれのカラーに触れながら、<br />この土地を深く知る旅。</>,
-    textEn: <>Nature, hot springs, food, and local culture.<br />A journey through the eight distinct communities that give Mogami its color,<br />offering a deeper experience of the region.</>,
+    text: <>清らかな水と、緑深い山々。冬には、白い雪に深く包まれる。<br />その土地で、受け継がれてきた暮らしと伝統文化。<br />最上を彩る8つの地域、それぞれの風景や営みに触れながら、<br />この土地を深く知る旅。</>,
+    textEn: <>Clear waters and deep green mountains. In winter, the land is wrapped in white snow.<br />Ways of life and traditions passed down through generations.<br />A journey through the eight communities of Mogami,<br />encountering their landscapes and ways of life to discover the region more deeply.</>,
     image: "/images/journey-stay.jpg"
   },
   {
