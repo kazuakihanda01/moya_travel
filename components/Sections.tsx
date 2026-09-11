@@ -13,7 +13,6 @@ const navigationLinks = [
   { label: "TOPICS", href: "/#topics" },
   // Temporarily hidden until the PLACES / PHOTOGRAPHS photo data is ready.
   // { label: "PLACES / PHOTOGRAPHS", href: "#places" },
-  { label: "LAND OPERATOR", href: "/#land-operator" },
   { label: "FOR TRAVELERS", href: "/#for-travelers" }
 ];
 
@@ -74,8 +73,7 @@ export function Header() {
 }
 export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami/Yamagata.</p></div></section>; }
 export function Introduction() {
-  return <section className="intro wrap" id="about">
-    <Label>ABOUT MOYA TRAVEL</Label>
+  return <section className="intro wrap">
     <div className="intro-content">
       <div className="intro-ja">
         <h2>山形県最上地域</h2>
@@ -219,8 +217,8 @@ export function Topics() {
       : topics.map(topic => <article className="topic" key={topic.topicId}><time dateTime={topic.date.replaceAll(".", "-")}>{topic.date}</time><a href={`/topics/${topic.topicId}`}><h3>{topic.titleJa}</h3><p lang="en">{topic.titleEn}</p></a></article>)}</div>
   </section>;
 }
-export function Professionals() { return <section className="professionals" id="land-operator"><div className="wrap land-operator">
-  <div className="land-operator-heading"><Label>LAND OPERATOR</Label><h2>最上だから、つくれる旅がある。</h2><p lang="en">Journeys that can only be created in Mogami.</p></div>
+export function Professionals() { return <section className="professionals" id="about"><div className="wrap land-operator">
+  <div className="land-operator-heading"><Label>ABOUT MOYA TRAVEL</Label><h2>最上だから、つくれる旅がある。</h2><p lang="en">Journeys that can only be created in Mogami.</p></div>
   <div className="land-operator-content">
     <div className="land-operator-intro"><p>MOYA Travelでは、最上・金山を知るランドオペレーターとして、</p><ol>{journeys.map(item => <li key={item.no}><span>{item.no}</span>「{item.title}」</li>)}</ol><p>をベースに、ご要望に合わせた旅をアレンジします。</p></div>
     <div className="land-operator-services"><p>旅行業者様の旅行商品造成に向けた地域コンテンツのご提案、<br />最上地域での宿泊・移動等の旅行サービスの手配、<br />撮影・体験コンテンツの企画・調整など、<br />旅行業者様からのご相談を承ります。</p></div>
