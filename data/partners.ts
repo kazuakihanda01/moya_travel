@@ -61,7 +61,7 @@ export const partners: Partner[] = [
     id: "kijiro-semi-onsen",
     category: "STAY",
     nameJa: "喜至楼（瀬見温泉）",
-    nameEn: "KIJIRŌ / SEMI ONSEN",
+    nameEn: "KISHIRO / SEMI ONSEN",
     copyJa: "山形で最も古い木造建築旅館",
     copyEn: "Yamagata’s oldest wooden ryokan.",
     image: "/images/stay_03_TOP.jpg",
