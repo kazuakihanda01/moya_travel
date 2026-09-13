@@ -7,6 +7,7 @@ const cormorant = Cormorant_Garamond({ weight: ["400", "500"], style: ["normal",
 const inter = Inter({ subsets: ["latin"], variable: "--font-ui", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.moya-travel.com"),
   title: "MOYA Travel | 最上を、旅する。",
   description: "山形県最上地域の旅、風景、写真、地域企画を伝えるMOYA Travel。",
   openGraph: { title: "MOYA Travel | 最上を、旅する。", description: "山形県最上地域の旅、風景、写真、地域企画を伝えるMOYA Travel。", type: "website", locale: "ja_JP" }

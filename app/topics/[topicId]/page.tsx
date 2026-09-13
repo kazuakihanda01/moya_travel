@@ -7,10 +7,11 @@ type TopicPageProps = {
   params: { topicId: string };
 };
 
-const topicMetadata: Record<string, { title: string; description: string }> = {
+const topicMetadata: Record<string, Metadata> = {
   "20260909-02": {
     title: "地域シンポジウムと連携した旅行企画 | 第2回金山リーディングス | MOYA Travel",
-    description: "地域シンポジウムと旅を組み合わせ、旅程づくり、現地手配、案内まで行うMOYA Travelの取り組み事例。第2回金山リーディングスと連携し、金山・最上地域をめぐる1泊2日の旅を形にしました。"
+    description: "地域シンポジウムと旅を組み合わせ、旅程づくり、現地手配、案内まで行うMOYA Travelの取り組み事例。第2回金山リーディングスと連携し、金山・最上地域をめぐる1泊2日の旅を形にしました。",
+    alternates: { canonical: "/topics/20260909-02" }
   }
 };
 
