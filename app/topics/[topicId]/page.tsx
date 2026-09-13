@@ -7,6 +7,13 @@ type TopicPageProps = {
   params: { topicId: string };
 };
 
+const topicMetadata: Record<string, { title: string; description: string }> = {
+  "20260909-02": {
+    title: "地域シンポジウムと連携した旅行企画 | 第2回金山リーディングス | MOYA Travel",
+    description: "地域シンポジウムと旅を組み合わせ、旅程づくり、現地手配、案内まで行うMOYA Travelの取り組み事例。第2回金山リーディングスと連携し、金山・最上地域をめぐる1泊2日の旅を形にしました。"
+  }
+};
+
 export function generateStaticParams() {
   return topics.map(({ topicId }) => ({ topicId }));
 }
@@ -15,10 +22,7 @@ export function generateMetadata({ params }: TopicPageProps): Metadata {
   const topic = getTopic(params.topicId);
   if (!topic) return {};
 
-  return {
-    title: `${topic.titleJa} | MOYA Travel`,
-    description: topic.body[0]
-  };
+  return topicMetadata[topic.topicId] ?? {};
 }
 
 export default function TopicPage({ params }: TopicPageProps) {

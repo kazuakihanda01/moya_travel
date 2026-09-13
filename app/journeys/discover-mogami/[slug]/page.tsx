@@ -8,6 +8,25 @@ type ThemeTrunkPageProps = {
   params: { slug: string };
 };
 
+const themeMetadata: Record<string, { title: string; description: string }> = {
+  "in-the-cedar-forests": {
+    title: "金山町の杉林を歩く旅 | 大美輪・岩円地蔵 | MOYA Travel",
+    description: "山形県金山町の大美輪の大杉や岩円地蔵へ。長い時間をかけて育まれた杉林を歩き、森の風景や撮影を楽しみながら金山の自然に触れます。"
+  },
+  "along-the-water": {
+    title: "金山町の水辺をめぐる旅 | 谷口銀山・田屋・中田春木川 | MOYA Travel",
+    description: "谷口銀山、田屋の一本桜、中田春木川。山形県金山町の山里を流れる清らかな水と、水辺に生まれた風景をめぐります。"
+  },
+  "historic-hot-springs-and-architecture": {
+    title: "瀬見温泉・喜至楼を訪ねる旅 | 山形・最上町 | MOYA Travel",
+    description: "山形県最上町の瀬見温泉と歴史ある旅館・喜至楼へ。小国川沿いの温泉街を歩き、木造建築や館内に残る歴史と土地の物語に触れます。"
+  },
+  "along-the-railway": {
+    title: "陸羽東線の風景をたどる旅 | 山形・最上 | MOYA Travel",
+    description: "山形県最上地域を横断する陸羽東線。最上町から新庄へ、駅や雪景色、鉄路の風景をたどりながら、復旧へ向かう現在の陸羽東線を見つめます。"
+  }
+};
+
 export function generateStaticParams() {
   return mogamiJourneyThemes.map(theme => ({ slug: theme.slug }));
 }
@@ -15,7 +34,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: ThemeTrunkPageProps): Metadata {
   const theme = findMogamiJourneyTheme(params.slug);
   return theme
-    ? { title: `${theme.titleJa} | Discover Mogami | MOYA Travel` }
+    ? themeMetadata[theme.slug]
     : {};
 }
 
