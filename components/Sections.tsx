@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { topics } from "../data/topics";
 import { Partner, PartnerCategory, partners, partnersRepresentativeImage } from "../data/partners";
+import type { GalleryImage } from "../data/galleryImages";
 
 const navigationLinks = [
   { label: "ABOUT MOYA TRAVEL", href: "/#about" },
@@ -49,17 +50,27 @@ type PhotoTrunk = {
   descriptionJa?: string | null;
   descriptionEn?: string | null;
   featuredImage: string;
-  galleryImages: string[];
+  galleryImages: GalleryImage[];
 };
 
-// JOURNEYS 01 owns Kaneyama's photo essay. Missing numbered files are removed by
-// TrunkPhoto, so photographs can be added non-sequentially without updating code.
+// Add new photographs here only after their files are available.
 const kaneyamaTownscape: PhotoTrunk = {
   no: "01",
   nameJa: "金山の街並み",
   nameEn: "KANEYAMA TOWNSCAPE",
   featuredImage: "/images/places/trunk0101.jpg",
-  galleryImages: Array.from({ length: 99 }, (_, index) => `/images/places/trunk01${String(index + 1).padStart(2, "0")}.jpg`)
+  galleryImages: [
+    { src: "/images/places/trunk0101.jpg", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0102.jpg", width: 1883, height: 3000 },
+    { src: "/images/places/trunk0103.jpg", width: 1811, height: 3000 },
+    { src: "/images/places/trunk0104.jpg", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0105.jpg", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0106.jpg", width: 1003, height: 1568 },
+    { src: "/images/places/trunk0107.jpg", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0108.jpg", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0109.jpg", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0110.jpg", width: 2000, height: 3000 }
+  ]
 };
 
 // Add future PLACES / PHOTOGRAPHS trunks here. trunk01 has moved to JOURNEYS 01.
@@ -105,16 +116,14 @@ export function Journeys() {
           <div className="journey-detail-title"><h2 id="journey-detail-title">美しい町並みを歩く旅</h2><p lang="en">A journey through beautiful townscapes.</p></div>
           <div className="trunk-title"><h3>{kaneyamaTownscape.nameJa}</h3><p lang="en">{kaneyamaTownscape.nameEn}</p></div>
         </header>
-        <div className="trunk-gallery journey-gallery">{kaneyamaTownscape.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${kaneyamaTownscape.nameJa}の写真 ${index + 1}`} />)}</div>
+        <div className="trunk-gallery journey-gallery">{kaneyamaTownscape.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${kaneyamaTownscape.nameJa}の写真 ${index + 1}`} />)}</div>
         <button type="button" className="trunk-return" onClick={() => setPhotoEssayOpen(false)}><span aria-hidden="true">←</span> JOURNEYSへ戻る</button>
       </div>
     </div>}
   </section>;
 }
-function TrunkPhoto({ src, alt, featured = false, onOpen }: { src: string; alt: string; featured?: boolean; onOpen?: () => void }) {
-  const [missing, setMissing] = useState(false);
-  if (missing) return null;
-  const image = <img src={src} alt={alt} onError={() => setMissing(true)} />;
+function TrunkPhoto({ image: photo, alt, featured = false, onOpen }: { image: GalleryImage; alt: string; featured?: boolean; onOpen?: () => void }) {
+  const image = <Image src={photo.src} alt={alt} width={photo.width} height={photo.height} sizes="(max-width: 700px) calc(100vw - 42px), 58vw" />;
   return featured ? <button className="trunk-featured" type="button" onClick={onOpen} aria-label={`${alt}からフォトトランクを開く`}>{image}<span>VIEW PHOTO TRUNK →</span></button> : <figure className="trunk-photo">{image}</figure>;
 }
 
@@ -133,7 +142,7 @@ export function Places() {
     <div className="places-heading"><h2>最上の風景。</h2><p lang="en">Landscapes of Mogami.</p></div>
     <div className="trunk-list">{photoTrunks.map(trunk => <article className="photo-trunk" key={trunk.no}>
       <header className="trunk-header"><p className="trunk-number">{trunk.no}</p><div className="trunk-title"><h3>{trunk.nameJa}</h3><p lang="en">{trunk.nameEn}</p></div></header>
-      <TrunkPhoto src={trunk.featuredImage} alt={`${trunk.nameJa}の代表写真`} featured onOpen={() => setOpenTrunk(trunk)} />
+      <TrunkPhoto image={{ src: trunk.featuredImage, width: 1086, height: 1448 }} alt={`${trunk.nameJa}の代表写真`} featured onOpen={() => setOpenTrunk(trunk)} />
     </article>)}</div>
   </div>{openTrunk && <div className="trunk-view" role="dialog" aria-modal="true" aria-labelledby={`trunk-view-title-${openTrunk.no}`}>
     <button type="button" className="trunk-back" onClick={() => setOpenTrunk(null)} aria-label="フォトトランク一覧へ戻る"><span aria-hidden="true">←</span> BACK</button>
@@ -141,12 +150,12 @@ export function Places() {
       <header className="trunk-view-header"><p className="trunk-number">{openTrunk.no}</p><div className="trunk-title"><h3 id={`trunk-view-title-${openTrunk.no}`}>{openTrunk.nameJa}</h3><p lang="en">{openTrunk.nameEn}</p></div>
         {(openTrunk.descriptionJa || openTrunk.descriptionEn) && <div className="trunk-description">{openTrunk.descriptionJa && <p>{openTrunk.descriptionJa}</p>}{openTrunk.descriptionEn && <p lang="en">{openTrunk.descriptionEn}</p>}</div>}
       </header>
-      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
+      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
       <button type="button" className="trunk-return" onClick={() => setOpenTrunk(null)}><span aria-hidden="true">←</span> PHOTO TRUNKSへ戻る</button>
     </div>
   </div>}</section>;
 }
-export function Projects() { return <section className="section wrap" id="projects"><Label>COLLABORATIVE PROJECTS</Label><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
+export function Projects() { return <section className="section wrap" id="projects"><h2 className="label">COLLABORATIVE PROJECTS</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
 export function Partners() {
   return <section className="section wrap partners" id="partners">
     <Label>PARTNERS</Label>
@@ -202,7 +211,7 @@ export function PartnersDirectory() {
       <button type="button" className="trunk-back" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERS</button>
       <div className="trunk-view-inner">
         <header className="trunk-view-header"><p className="trunk-number">{openPartner.category} {String(partners.filter(partner => partner.category === openPartner.category).findIndex(partner => partner.id === openPartner.id) + 1).padStart(2, "0")}</p><div className="trunk-title"><h3 id="partner-trunk-title">{openPartner.nameJa}</h3>{openPartner.nameEn !== openPartner.nameJa && <p lang="en">{openPartner.nameEn}</p>}</div></header>
-        <div className="trunk-gallery" data-count={openPartner.galleryImages.length}>{openPartner.galleryImages.map((src, index) => <TrunkPhoto key={src} src={src} alt={`${openPartner.nameJa}の写真 ${index + 1}`} />)}</div>
+        <div className="trunk-gallery" data-count={openPartner.galleryImages.length}>{openPartner.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${openPartner.nameJa}の写真 ${index + 1}`} />)}</div>
         <button type="button" className="trunk-return" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERSへ戻る</button>
       </div>
     </div>}
