@@ -24,7 +24,8 @@ const journeys = [
     titleEn: "A journey through beautiful townscapes.",
     text: <>最上・金山の、蔵屋敷や大堰、伝統的な金山住宅。<br />暮らしとともに受け継がれてきた美しい風景を歩く。</>,
     textEn: <>Traditional Kaneyama houses, historic storehouses, and the Ōzeki waterway<br />in Mogami, Kaneyama.<br />Walk through beautiful landscapes shaped and preserved by generations of local life.</>,
-    image: "/images/journey-walk.svg.jpg"
+    image: "/images/journey-walk.svg.jpg",
+    alt: "山形県最上郡金山町の大堰公園を流れる大堰と古民家"
   },
   {
     no: "02",
@@ -32,7 +33,8 @@ const journeys = [
     titleEn: "Discover Mogami.",
     text: <>清らかな水と、緑深い山々。冬には、白い雪に深く包まれる。<br />その土地で、受け継がれてきた暮らしと伝統文化。<br />最上を彩る8つの地域、それぞれの風景や営みに触れながら、<br />この土地を深く知る旅。</>,
     textEn: <>Clear waters and deep green mountains. In winter, the land is wrapped in white snow.<br />Ways of life and traditions passed down through generations.<br />A journey through the eight communities of Mogami,<br />encountering their landscapes and ways of life to discover the region more deeply.</>,
-    image: "/images/journey-stay.jpg"
+    image: "/images/journey-stay.jpg",
+    alt: "山形県最上郡舟形町の小国川沿いに広がる鮎の里と猿羽根山"
   },
   {
     no: "03",
@@ -40,7 +42,8 @@ const journeys = [
     titleEn: "Gather, Create and Connect in Mogami.",
     text: <>社員旅行や仲間とのセッション、ワークショップ、シンポジウム。<br />自然豊かな最上に集い、都会を離れて語り合う。<br />新しい発想やつながりが生まれる、クリエイティブな時間を旅にする。</>,
     textEn: <>Company retreats, group sessions, workshops, and symposiums.<br />Step away from the city and gather in the nature of Mogami—<br />a journey for conversation, creativity, and new connections.</>,
-    image: "/images/journey-field.jpg"
+    image: "/images/journey-field.jpg",
+    alt: "山形県最上地域をめぐり、カメラを手に撮影ワークショップを楽しむ仲間"
   }
 ];
 type PhotoTrunk = {
@@ -82,7 +85,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return <header className="header"><a href="/#top" className="brand">MOYA Travel</a><button className="menu" aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>MENU</button><nav id="navigation" className={open ? "open" : ""} aria-label="メインナビゲーション">{navigationLinks.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}</nav></header>;
 }
-export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="霧の中に連なる最上の山々" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami/Yamagata.</p></div></section>; }
+export function Hero() { return <section className="hero" id="top"><Image src="/images/hero-mountain.png" alt="山形県最上郡金山町の山霧に包まれる竜馬山" fill priority sizes="100vw" /><div className="hero-copy"><h1>最上を、旅する。</h1><p className="tagline">Journey through Mogami/Yamagata.</p></div></section>; }
 export function Introduction() {
   return <section className="intro wrap">
     <div className="intro-content">
@@ -107,7 +110,7 @@ export function Journeys() {
     return () => { document.body.classList.remove("trunk-view-open"); window.removeEventListener("keydown", close); };
   }, [photoEssayOpen]);
 
-  return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" id={`journey-${item.no}`} key={item.no}><div className="journey-image"><Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p>{item.no === "01" && <button className="text-link journey-more" type="button" onClick={() => setPhotoEssayOpen(true)} aria-haspopup="dialog">MORE →</button>}{item.no === "02" && <a className="text-link journey-more" href="/journeys/discover-mogami">MORE →</a>}</div></article>)}</div>
+  return <section className="section wrap" id="journeys"><Label>JOURNEYS &amp; LOCAL EXPERIENCES</Label><h2 className="journeys-title">最上の旅をつくる</h2><p className="journeys-title-en" lang="en">Creating journeys through Mogami.</p><div className="journey-list">{journeys.map(item => <article className="journey" id={`journey-${item.no}`} key={item.no}><div className="journey-image"><Image src={item.image} alt={item.alt} fill sizes="(max-width: 700px) 100vw, 55vw" /></div><div className="journey-text"><span>{item.no}</span><h3>{item.title}</h3><p className="journey-title-en" lang="en">{item.titleEn}</p><p>{item.text}</p><p className="journey-description-en" lang="en">{item.textEn}</p>{item.no === "01" && <button className="text-link journey-more" type="button" onClick={() => setPhotoEssayOpen(true)} aria-haspopup="dialog">MORE →</button>}{item.no === "02" && <a className="text-link journey-more" href="/journeys/discover-mogami">MORE →</a>}</div></article>)}</div>
     {photoEssayOpen && <div className="trunk-view journey-detail" role="dialog" aria-modal="true" aria-labelledby="journey-detail-title">
       <button type="button" className="trunk-back" onClick={() => setPhotoEssayOpen(false)} aria-label="JOURNEYS 01へ戻る"><span aria-hidden="true">←</span> JOURNEYS</button>
       <div className="trunk-view-inner">
@@ -155,7 +158,7 @@ export function Places() {
     </div>
   </div>}</section>;
 }
-export function Projects() { return <section className="section wrap" id="projects"><h2 className="label">COLLABORATIVE PROJECTS</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山間の撮影地で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
+export function Projects() { return <section className="section wrap" id="projects"><h2 className="label">COLLABORATIVE PROJECTS</h2><article className="project"><div className="project-image"><Image src="/images/BF_13147.jpg" alt="山形県最上郡金山町上春木地区の山里で大型カメラを構える写真家たち" width={1365} height={2048} sizes="(max-width: 700px) calc(100vw - 42px), 52vw" /></div><div><Label>PHOTOGRAPHY PROJECT</Label><h3>Capture Tokyo <span>×</span> MOYA Travel</h3><div className="project-copy"><div className="project-lead"><h4>最上を舞台に作品をつくる旅。</h4><p lang="en">Create your story in Mogami.</p></div><p>Capture TokyoとのコラボレーションによるPhotography Experience。</p><p className="project-format" lang="en">Model Photography ＋ Landscape Photography</p><div className="project-description-ja"><p>プロの日本人モデルとのポートレート撮影と、</p><p>金山の町並み、歴史ある建築、森や里山をめぐるランドスケープ撮影。</p><p>自然光の中で、その土地を歩き、光を探し、構図をつくる。</p><p>最上で出会う風景と時間を、自分だけの写真作品へ。</p></div><div className="project-description-en" lang="en"><p>Portrait photography with professional Japanese models, together with landscape photography through the townscapes, historic architecture, forests and countryside of Mogami.</p><p>Discover the light and landscapes of Mogami, and transform what you encounter into photographs of your own.</p></div></div><a className="text-link" href="https://www.capturetokyo.com/photography-experience" target="_blank" rel="noopener noreferrer">VIEW PROJECT →</a></div></article></section>; }
 export function Partners() {
   return <section className="section wrap partners" id="partners">
     <Label>PARTNERS</Label>
@@ -163,7 +166,7 @@ export function Partners() {
       <div><h2>最上の旅を、ともにつくる。</h2><p lang="en">Creating journeys together in Mogami.</p></div>
       <div className="partners-intro"><p>宿泊、移動、地域での体験。<br />MOYA Travelは、最上をよく知る地域のパートナーとともに、<br />この土地ならではの旅をつくります。</p><p lang="en">Stays, transportation, and local experiences.<br />MOYA Travel works with trusted local partners<br />to create journeys rooted in the landscapes and communities of Mogami.</p></div>
     </header>
-    {partnersRepresentativeImage && <div className="partners-representative"><Image src={partnersRepresentativeImage} alt="最上の旅をともにつくる地域のパートナー" fill sizes="(max-width: 700px) 100vw, 75vw" /></div>}
+    {partnersRepresentativeImage && <div className="partners-representative"><Image src={partnersRepresentativeImage} alt="山形県最上郡金山町のシェーネスハイム金山の全景" fill sizes="(max-width: 700px) 100vw, 75vw" /></div>}
     <a className="text-link partners-more" href="/partners">MORE →</a>
   </section>;
 }
