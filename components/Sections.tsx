@@ -53,6 +53,7 @@ type PhotoTrunk = {
   descriptionJa?: string | null;
   descriptionEn?: string | null;
   featuredImage: string;
+  featuredImageAlt: string;
   galleryImages: GalleryImage[];
 };
 
@@ -62,17 +63,18 @@ const kaneyamaTownscape: PhotoTrunk = {
   nameJa: "金山の街並み",
   nameEn: "KANEYAMA TOWNSCAPE",
   featuredImage: "/images/places/trunk0101.jpg",
+  featuredImageAlt: "山形県最上郡金山町の大堰公園と蔵屋敷",
   galleryImages: [
-    { src: "/images/places/trunk0101.jpg", width: 1086, height: 1448 },
-    { src: "/images/places/trunk0102.jpg", width: 1883, height: 3000 },
-    { src: "/images/places/trunk0103.jpg", width: 1811, height: 3000 },
-    { src: "/images/places/trunk0104.jpg", width: 1086, height: 1448 },
-    { src: "/images/places/trunk0105.jpg", width: 1086, height: 1448 },
-    { src: "/images/places/trunk0106.jpg", width: 1003, height: 1568 },
-    { src: "/images/places/trunk0107.jpg", width: 2000, height: 3000 },
-    { src: "/images/places/trunk0108.jpg", width: 2000, height: 3000 },
-    { src: "/images/places/trunk0109.jpg", width: 2000, height: 3000 },
-    { src: "/images/places/trunk0110.jpg", width: 2000, height: 3000 }
+    { src: "/images/places/trunk0101.jpg", alt: "山形県最上郡金山町の大堰公園と蔵屋敷", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0102.jpg", alt: "山形県最上郡金山町のマルコの蔵と切妻屋根が連なる街並み", width: 1883, height: 3000 },
+    { src: "/images/places/trunk0103.jpg", alt: "山形県最上郡金山町の蔵が残る街並み", width: 1811, height: 3000 },
+    { src: "/images/places/trunk0104.jpg", alt: "山形県最上郡金山町のマルイ邸の蔵と満開の桜", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0105.jpg", alt: "山形県最上郡金山町の金山杉を使った金山住宅・カネカ", width: 1086, height: 1448 },
+    { src: "/images/places/trunk0106.jpg", alt: "山形県最上郡金山町の大堰公園を流れるせせらぎと鯉", width: 1003, height: 1568 },
+    { src: "/images/places/trunk0107.jpg", alt: "山形県最上郡金山町に残る歴史ある金山住宅・マルイ邸", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0108.jpg", alt: "山形県最上郡金山町の八幡神社周辺の公園と街並み", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0109.jpg", alt: "山形県最上郡金山町の八幡神社", width: 2000, height: 3000 },
+    { src: "/images/places/trunk0110.jpg", alt: "塀や垣根がなく、どこまでも歩いて楽しめる山形県金山町の街並み", width: 2000, height: 3000 }
   ]
 };
 
@@ -119,7 +121,7 @@ export function Journeys() {
           <div className="journey-detail-title"><h2 id="journey-detail-title">美しい町並みを歩く旅</h2><p lang="en">A journey through beautiful townscapes.</p></div>
           <div className="trunk-title"><h3>{kaneyamaTownscape.nameJa}</h3><p lang="en">{kaneyamaTownscape.nameEn}</p></div>
         </header>
-        <div className="trunk-gallery journey-gallery">{kaneyamaTownscape.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${kaneyamaTownscape.nameJa}の写真 ${index + 1}`} />)}</div>
+        <div className="trunk-gallery journey-gallery">{kaneyamaTownscape.galleryImages.map(image => <TrunkPhoto key={image.src} image={image} alt={image.alt} />)}</div>
         <button type="button" className="trunk-return" onClick={() => setPhotoEssayOpen(false)}><span aria-hidden="true">←</span> JOURNEYSへ戻る</button>
       </div>
     </div>}
@@ -145,7 +147,7 @@ export function Places() {
     <div className="places-heading"><h2>最上の風景。</h2><p lang="en">Landscapes of Mogami.</p></div>
     <div className="trunk-list">{photoTrunks.map(trunk => <article className="photo-trunk" key={trunk.no}>
       <header className="trunk-header"><p className="trunk-number">{trunk.no}</p><div className="trunk-title"><h3>{trunk.nameJa}</h3><p lang="en">{trunk.nameEn}</p></div></header>
-      <TrunkPhoto image={{ src: trunk.featuredImage, width: 1086, height: 1448 }} alt={`${trunk.nameJa}の代表写真`} featured onOpen={() => setOpenTrunk(trunk)} />
+      <TrunkPhoto image={{ src: trunk.featuredImage, alt: trunk.featuredImageAlt, width: 1086, height: 1448 }} alt={trunk.featuredImageAlt} featured onOpen={() => setOpenTrunk(trunk)} />
     </article>)}</div>
   </div>{openTrunk && <div className="trunk-view" role="dialog" aria-modal="true" aria-labelledby={`trunk-view-title-${openTrunk.no}`}>
     <button type="button" className="trunk-back" onClick={() => setOpenTrunk(null)} aria-label="フォトトランク一覧へ戻る"><span aria-hidden="true">←</span> BACK</button>
@@ -153,7 +155,7 @@ export function Places() {
       <header className="trunk-view-header"><p className="trunk-number">{openTrunk.no}</p><div className="trunk-title"><h3 id={`trunk-view-title-${openTrunk.no}`}>{openTrunk.nameJa}</h3><p lang="en">{openTrunk.nameEn}</p></div>
         {(openTrunk.descriptionJa || openTrunk.descriptionEn) && <div className="trunk-description">{openTrunk.descriptionJa && <p>{openTrunk.descriptionJa}</p>}{openTrunk.descriptionEn && <p lang="en">{openTrunk.descriptionEn}</p>}</div>}
       </header>
-      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${openTrunk.nameJa}の写真 ${index + 1}`} />)}</div>
+      <div className="trunk-gallery" data-count={openTrunk.galleryImages.length}>{openTrunk.galleryImages.map(image => <TrunkPhoto key={image.src} image={image} alt={image.alt} />)}</div>
       <button type="button" className="trunk-return" onClick={() => setOpenTrunk(null)}><span aria-hidden="true">←</span> PHOTO TRUNKSへ戻る</button>
     </div>
   </div>}</section>;
@@ -199,7 +201,7 @@ export function PartnersDirectory() {
         return <section className="partner-category-section" key={category}>
           <h2>{category}</h2>
           {featured.length > 0 && <div className="feature-partners">{featured.map((partner, index) => <article className={`feature-partner feature-partner-${index % 3 + 1}`} key={partner.id}>
-            <button className="feature-partner-image" type="button" onClick={() => partner.galleryImages.length && setOpenPartner(partner)} aria-label={`${partner.nameJa}のPhoto Trunkを開く`} disabled={!partner.galleryImages.length}><Image src={partner.image!} alt={`${partner.nameJa}の代表写真`} fill sizes="(max-width: 700px) 100vw, 75vw" /></button>
+            <button className="feature-partner-image" type="button" onClick={() => partner.galleryImages.length && setOpenPartner(partner)} aria-label={`${partner.nameJa}のPhoto Trunkを開く`} disabled={!partner.galleryImages.length}><Image src={partner.image!} alt={partner.imageAlt!} fill sizes="(max-width: 700px) 100vw, 75vw" /></button>
             <div className="partner-details"><h3>{partner.nameJa}</h3>{partner.nameEn !== partner.nameJa && <p className="partner-name-en" lang="en">{partner.nameEn}</p>}{partner.copyJa && <p className="partner-copy-ja">{partner.copyJa}</p>}{partner.descriptionJa && <p className="partner-description-ja">{partner.descriptionJa}</p>}{partner.copyEn && <p className="partner-copy-en" lang="en">{partner.copyEn}</p>}{partner.descriptionEn && <p className="partner-description-en" lang="en">{partner.descriptionEn}</p>}{partner.galleryImages.length > 0 && <button className="text-link partner-photographs" type="button" onClick={() => setOpenPartner(partner)}>VIEW PHOTOGRAPHS →</button>}{partner.url && <a className="text-link" href={partner.url} target="_blank" rel="noopener noreferrer">{partner.linkLabel ?? "VISIT WEBSITE ↗"}</a>}</div>
           </article>)}</div>}
           {textOnly.length > 0 && <div className="text-partners">{textOnly.map(partner => <article className="text-partner" key={partner.id}>
@@ -214,7 +216,7 @@ export function PartnersDirectory() {
       <button type="button" className="trunk-back" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERS</button>
       <div className="trunk-view-inner">
         <header className="trunk-view-header"><p className="trunk-number">{openPartner.category} {String(partners.filter(partner => partner.category === openPartner.category).findIndex(partner => partner.id === openPartner.id) + 1).padStart(2, "0")}</p><div className="trunk-title"><h3 id="partner-trunk-title">{openPartner.nameJa}</h3>{openPartner.nameEn !== openPartner.nameJa && <p lang="en">{openPartner.nameEn}</p>}</div></header>
-        <div className="trunk-gallery" data-count={openPartner.galleryImages.length}>{openPartner.galleryImages.map((image, index) => <TrunkPhoto key={image.src} image={image} alt={`${openPartner.nameJa}の写真 ${index + 1}`} />)}</div>
+        <div className="trunk-gallery" data-count={openPartner.galleryImages.length}>{openPartner.galleryImages.map(image => <TrunkPhoto key={image.src} image={image} alt={image.alt} />)}</div>
         <button type="button" className="trunk-return" onClick={() => setOpenPartner(null)}><span aria-hidden="true">←</span> PARTNERSへ戻る</button>
       </div>
     </div>}
