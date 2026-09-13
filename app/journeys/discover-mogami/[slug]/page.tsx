@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Footer, Header } from "../../../../components/Sections";
 import { findMogamiJourneyTheme, mogamiJourneyThemes } from "../../../../data/mogamiJourneys";
@@ -38,8 +39,8 @@ export default function MogamiThemeTrunkPage({ params }: ThemeTrunkPageProps) {
         </div>
       </header>
       {theme.galleryImages.length > 0 && <div className="mogami-trunk-gallery" data-count={theme.galleryImages.length}>
-        {theme.galleryImages.map((src, index) => <figure className="mogami-trunk-photo" key={src}>
-          <img src={src} alt={`${theme.titleJa}の写真 ${index + 1}`} />
+        {theme.galleryImages.map((image, index) => <figure className="mogami-trunk-photo" key={image.src}>
+          <Image src={image.src} alt={`${theme.titleJa}の写真 ${index + 1}`} width={image.width} height={image.height} sizes="(max-width: 700px) calc(100vw - 42px), 67vw" />
         </figure>)}
       </div>}
       <a className="mogami-trunk-return text-link" href="/journeys/discover-mogami">← DISCOVER MOGAMI</a>

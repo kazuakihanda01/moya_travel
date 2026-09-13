@@ -1,3 +1,5 @@
+import type { GalleryImage } from "./galleryImages";
+
 export type PartnerCategory = "STAY" | "TRANSPORTATION" | "EXPERIENCE" | "LOCAL PARTNER";
 
 export type Partner = {
@@ -10,7 +12,7 @@ export type Partner = {
   descriptionJa?: string | null;
   descriptionEn?: string | null;
   image?: string | null;
-  galleryImages: string[];
+  galleryImages: GalleryImage[];
   url?: string | null;
   linkLabel?: string;
 };
@@ -30,13 +32,13 @@ export const partners: Partner[] = [
     descriptionEn: "A resort hotel for a relaxing stay in Green Valley Kamuro.",
     image: "/images/stay_01_TOP.jpg",
     galleryImages: [
-      "/images/stay_01_01.jpg",
-      "/images/stay_01_02.jpg",
-      "/images/stay_01_03.jpg",
-      "/images/stay_01_04.jpg",
-      "/images/stay_01_05.jpg",
-      "/images/stay_01_06.jpg",
-      "/images/stay_01_07.jpg"
+      { src: "/images/stay_01_01.jpg", width: 2000, height: 3000 },
+      { src: "/images/stay_01_02.jpg", width: 2000, height: 3000 },
+      { src: "/images/stay_01_03.jpg", width: 2000, height: 3000 },
+      { src: "/images/stay_01_04.jpg", width: 2000, height: 3000 },
+      { src: "/images/stay_01_05.jpg", width: 2000, height: 3000 },
+      { src: "/images/stay_01_06.jpg", width: 3000, height: 2000 },
+      { src: "/images/stay_01_07.jpg", width: 2000, height: 3000 }
     ],
     url: "https://schonesheim.jp/",
     linkLabel: "VIEW PARTNER →"
@@ -52,8 +54,8 @@ export const partners: Partner[] = [
     descriptionEn: "A place that cherishes the culture woven by generations through the passing seasons.",
     image: "/images/stay_02_TOP.jpg",
     galleryImages: [
-      "/images/stay_02_01.jpg",
-      "/images/stay_02_02.jpg"
+      { src: "/images/stay_02_01.jpg", width: 540, height: 761 },
+      { src: "/images/stay_02_02.jpg", width: 567, height: 762 }
     ],
     url: "https://shiki-hotel.com/"
   },
@@ -66,12 +68,12 @@ export const partners: Partner[] = [
     copyEn: "Yamagata’s oldest wooden ryokan.",
     image: "/images/stay_03_TOP.jpg",
     galleryImages: [
-      "/images/stay_03_01.jpg",
-      "/images/stay_03_02.jpg",
-      "/images/stay_03_03.jpg",
-      "/images/stay_03_04.jpg",
-      "/images/stay_03_05.jpg",
-      "/images/stay_03_06.jpg"
+      { src: "/images/stay_03_01.jpg", width: 4284, height: 5712 },
+      { src: "/images/stay_03_02.jpg", width: 3024, height: 4032 },
+      { src: "/images/stay_03_03.jpg", width: 4284, height: 5712 },
+      { src: "/images/stay_03_04.jpg", width: 3024, height: 4032 },
+      { src: "/images/stay_03_05.jpg", width: 5712, height: 4284 },
+      { src: "/images/stay_03_06.jpg", width: 3024, height: 4032 }
     ],
     url: null
   },
