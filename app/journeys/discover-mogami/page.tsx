@@ -7,7 +7,8 @@ import { mogamiJourneyThemes } from "../../../data/mogamiJourneys";
 
 export const metadata: Metadata = {
   title: "山形・最上を知る旅 | 自然と伝統に触れ、その時間を写真に残す | MOYA Travel",
-  description: "豊かな自然や地域に受け継がれてきた伝統を、歩き、触れ、体験する。山形県最上地域をめぐり、その土地で出会った風景や時間を写真などに残しながら、最上を深く知る旅を提案します。"
+  description: "豊かな自然や地域に受け継がれてきた伝統を、歩き、触れ、体験する。山形県最上地域をめぐり、その土地で出会った風景や時間を写真などに残しながら、最上を深く知る旅を提案します。",
+  alternates: { canonical: "/journeys/discover-mogami" }
 };
 
 export default function DiscoverMogamiPage() {
