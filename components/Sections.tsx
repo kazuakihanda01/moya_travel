@@ -284,7 +284,7 @@ export function Footer() {
     <div className="footer-identity">
       <a className="footer-brand" href="/#top">MOYA Travel</a>
       <address>
-        <p>NPO法人MOYA<br />山形県最上郡金山町大字金山325</p>
+        <p>NPO法人MOYA<br /><a href="https://www.moya-kaneyama.org/" target="_blank" rel="noopener noreferrer">www.moya-kaneyama.org</a><br />山形県最上郡金山町大字金山325</p>
         <p>山形県知事登録 旅行サービス手配業 第サービス-33号<br />（営業拠点：山形県新庄市沖ノ町5-1）</p>
       </address>
     </div>
