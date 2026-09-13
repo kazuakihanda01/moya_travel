@@ -90,7 +90,14 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     slug: "along-the-railway",
     locations: [{ nameJa: "陸羽東線 ／ 新庄・最上", nameEn: "Rikuu East Line / Shinjo & Mogami" }],
     galleryImages: [
-      { src: "/images/02_04_01.jpg", alt: "山形県最上郡最上町の陸羽東線、草が生い茂る線路と鉄橋へ続く風景", width: 2592, height: 3888 },
+      {
+        src: "/images/02_04_01.jpg",
+        alt: "山形県最上郡最上町の陸羽東線、草が生い茂る線路と鉄橋へ続く風景",
+        width: 2592,
+        height: 3888,
+        captionJa: "草に覆われた線路は、鉄橋の向こうへ続いている。\n豪雨災害で運休が続く陸羽東線。\nいま、復旧に向けた工事が少しずつ進んでいる。\nいつかまた、この風景の中を列車が走る日を待っている。",
+        captionEn: "The tracks, now covered in grass, continue beyond the railway bridge.\nThe Rikuu East Line remains suspended following severe damage caused by heavy rainfall.\nToday, restoration work is gradually moving forward.\nWe look forward to the day when trains once again travel through this landscape.",
+      },
       { src: "/images/02_04_02.jpg", alt: "山形県最上郡最上町、陸羽東線鵜杉駅のプラットホーム", width: 2592, height: 3888 },
       { src: "/images/02_04_03.jpg", alt: "山形県最上郡最上町、陸羽東線鵜杉駅からヤナ茶屋方向を望む風景", width: 5712, height: 4284 },
       { src: "/images/02_04_04.jpg", alt: "雪の陸羽東線を走り終点の山形県新庄駅に到着したキハ110系", width: 3024, height: 4032 },

@@ -3,4 +3,6 @@ export type GalleryImage = {
   alt: string;
   width: number;
   height: number;
+  captionJa?: string;
+  captionEn?: string;
 };

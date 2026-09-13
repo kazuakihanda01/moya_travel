@@ -41,6 +41,10 @@ export default function MogamiThemeTrunkPage({ params }: ThemeTrunkPageProps) {
       {theme.galleryImages.length > 0 && <div className="mogami-trunk-gallery" data-count={theme.galleryImages.length}>
         {theme.galleryImages.map(image => <figure className="mogami-trunk-photo" key={image.src}>
           <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 700px) calc(100vw - 42px), 67vw" />
+          {(image.captionJa || image.captionEn) && <figcaption>
+            {image.captionJa && <p>{image.captionJa}</p>}
+            {image.captionEn && <p lang="en">{image.captionEn}</p>}
+          </figcaption>}
         </figure>)}
       </div>}
       <a className="mogami-trunk-return text-link" href="/journeys/discover-mogami">← DISCOVER MOGAMI</a>
