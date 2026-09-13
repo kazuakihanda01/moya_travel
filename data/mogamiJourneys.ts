@@ -1,3 +1,5 @@
+import type { GalleryImage } from "./galleryImages";
+
 export type MogamiLocation = {
   nameJa: string;
   nameEn: string;
@@ -12,7 +14,7 @@ export type MogamiJourneyTheme = {
   fallbackImage: string;
   slug: string;
   locations: MogamiLocation[];
-  galleryImages: string[];
+  galleryImages: GalleryImage[];
 };
 
 // Add only files that actually exist to galleryImages. Keeping these lists explicit
@@ -28,12 +30,12 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     slug: "in-the-cedar-forests",
     locations: [{ nameJa: "大美輪の大杉・岩円地蔵 ／ 金山", nameEn: "Ōmiwa Great Cedar & Iwaen Jizō / Kaneyama" }],
     galleryImages: [
-      "/images/02_01_01.jpg",
-      "/images/02_01_02.jpg",
-      "/images/02_01_03.jpg",
-      "/images/02_01_04.jpg",
-      "/images/02_01_05.jpg",
-      "/images/02_01_06.jpg",
+      { src: "/images/02_01_01.jpg", width: 2000, height: 3000 },
+      { src: "/images/02_01_02.jpg", width: 3000, height: 2000 },
+      { src: "/images/02_01_03.jpg", width: 1448, height: 1086 },
+      { src: "/images/02_01_04.jpg", width: 2000, height: 3000 },
+      { src: "/images/02_01_05.jpg", width: 1402, height: 1122 },
+      { src: "/images/02_01_06.jpg", width: 3024, height: 4032 },
     ],
   },
   {
@@ -46,11 +48,11 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     slug: "along-the-water",
     locations: [{ nameJa: "田屋の一本桜・谷口銀山・春木川 ／ 金山", nameEn: "Taya’s Lone Cherry Tree, Taniguchi Silver Mine & Haruki River / Kaneyama" }],
     galleryImages: [
-      "/images/02_02_01.jpg",
-      "/images/02_02_02.jpg",
-      "/images/02_02_03.jpg",
-      "/images/02_02_04.jpg",
-      "/images/02_02_05.jpg",
+      { src: "/images/02_02_01.jpg", width: 7359, height: 5888 },
+      { src: "/images/02_02_02.jpg", width: 4284, height: 5712 },
+      { src: "/images/02_02_03.jpg", width: 2592, height: 3888 },
+      { src: "/images/02_02_04.jpg", width: 3024, height: 4032 },
+      { src: "/images/02_02_05.jpg", width: 3024, height: 4032 },
     ]
   },
   {
@@ -63,14 +65,14 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     slug: "historic-hot-springs-and-architecture",
     locations: [{ nameJa: "瀬見温泉街・喜至楼 ／ 最上", nameEn: "Semi Onsen & Kijirō / Mogami" }],
     galleryImages: [
-      "/images/02_03_01.jpg",
-      "/images/02_03_02.jpg",
-      "/images/02_03_03.jpg",
-      "/images/02_03_04.jpg",
-      "/images/02_03_05.jpg",
-      "/images/02_03_06.jpg",
-      "/images/02_03_07.jpg",
-      "/images/02_03_08.jpg",
+      { src: "/images/02_03_01.jpg", width: 2592, height: 3888 },
+      { src: "/images/02_03_02.jpg", width: 5712, height: 4284 },
+      { src: "/images/02_03_03.jpg", width: 4284, height: 5712 },
+      { src: "/images/02_03_04.jpg", width: 4284, height: 5712 },
+      { src: "/images/02_03_05.jpg", width: 6016, height: 4012 },
+      { src: "/images/02_03_06.jpg", width: 5712, height: 4284 },
+      { src: "/images/02_03_07.jpg", width: 3024, height: 4032 },
+      { src: "/images/02_03_08.jpg", width: 4284, height: 5712 },
     ]
   },
   {
@@ -83,12 +85,12 @@ export const mogamiJourneyThemes: MogamiJourneyTheme[] = [
     slug: "along-the-railway",
     locations: [{ nameJa: "陸羽東線 ／ 新庄・最上", nameEn: "Rikuu East Line / Shinjo & Mogami" }],
     galleryImages: [
-      "/images/02_04_01.jpg",
-      "/images/02_04_02.jpg",
-      "/images/02_04_03.jpg",
-      "/images/02_04_04.jpg",
-      "/images/02_04_05.jpg",
-      "/images/02_04_06.jpg",
+      { src: "/images/02_04_01.jpg", width: 2592, height: 3888 },
+      { src: "/images/02_04_02.jpg", width: 2592, height: 3888 },
+      { src: "/images/02_04_03.jpg", width: 5712, height: 4284 },
+      { src: "/images/02_04_04.jpg", width: 3024, height: 4032 },
+      { src: "/images/02_04_05.jpg", width: 3024, height: 4032 },
+      { src: "/images/02_04_06.jpg", width: 3024, height: 4032 },
     ]
   }
 ];
